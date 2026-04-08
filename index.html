@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Star Sisters ⭐</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Nunito', sans-serif; min-height: 100vh; overflow-x: hidden; -webkit-tap-highlight-color: transparent; background: #0d0221; }
+    button { font-family: inherit; cursor: pointer; border: none; }
+
+    /* ── HOME ─────────────────────────────── */
+    .home-bg {
+      min-height: 100vh;
+      background: linear-gradient(150deg, #0d0221 0%, #1a0533 30%, #0f1a4a 65%, #0a2a1a 100%);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 24px 20px; position: relative; overflow: hidden;
+    }
+    .home-stars-layer { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+    .float-star {
+      position: absolute; color: rgba(255,220,80,0.4);
+      animation: floatUp linear infinite; user-select: none;
+    }
+    @keyframes floatUp {
+      0%   { transform: translateY(110vh) rotate(0deg); opacity: 0; }
+      10%  { opacity: 1; }
+      90%  { opacity: 0.6; }
+      100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+    }
+    .home-title {
+      font-size: clamp(2rem, 8vw, 3rem); font-weight: 900; color: #fff;
+      text-align: center; margin-bottom: 6px;
+      text-shadow: 0 0 40px rgba(255,215,0,0.6);
+    }
+    .home-sub { font-size: 0.85rem; color: rgba(255,255,255,0.4); margin-bottom: 36px; letter-spacing: 2px; text-transform: uppercase; }
+    .profile-btn {
+      width: 100%; max-width: 380px; border-radius: 24px; padding: 20px 24px;
+      display: flex; align-items: center; gap: 16px; margin-bottom: 14px;
+      transition: transform 0.18s; cursor: pointer;
+    }
+    .profile-btn:active { transform: scale(0.97); }
+    .ella-profile-btn {
+      background: linear-gradient(135deg, #0d001f 0%, #1e0b4f 40%, #0b1a3a 100%);
+      border: 2px solid rgba(160,110,255,0.5);
+      box-shadow: 0 8px 32px rgba(100,40,220,0.35), inset 0 1px 0 rgba(255,255,255,0.08);
+    }
+    .ella-icon { font-size: 2.8rem; text-shadow: 0 0 20px rgba(180,140,255,0.8); }
+    .ella-name { font-size: 1.5rem; font-weight: 900; color: #c8a8ff; font-family:'Space Grotesk',sans-serif; }
+    .ella-lvl  { font-size: 0.78rem; color: rgba(200,168,255,0.6); margin-top: 2px; }
+    .ella-stars { margin-left:auto; background:rgba(255,215,0,0.15); border:1px solid rgba(255,215,0,0.3); border-radius:20px; padding:6px 14px; font-size:1rem; font-weight:900; color:#ffd700; white-space:nowrap; }
+    .channa-profile-btn {
+      background: linear-gradient(135deg, #ff6eb4 0%, #ff9ecf 40%, #ffb3e6 100%);
+      border: 2px solid rgba(255,200,230,0.8);
+      box-shadow: 0 8px 32px rgba(255,80,160,0.35);
+    }
+    .channa-icon { font-size: 2.8rem; }
+    .channa-name { font-size:1.5rem; font-weight:900; color:#fff; text-shadow:0 1px 4px rgba(0,0,0,0.2); }
+    .channa-lvl  { font-size:0.78rem; color:rgba(255,255,255,0.75); margin-top:2px; }
+    .channa-stars { margin-left:auto; background:rgba(255,255,255,0.3); border-radius:20px; padding:6px 14px; font-size:1rem; font-weight:900; color:#fff; text-shadow:0 1px 3px rgba(0,0,0,0.15); white-space:nowrap; }
+    .dad-btn {
+      background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15);
+      backdrop-filter:blur(10px); color:rgba(255,255,255,0.75); border-radius:16px;
+      padding:14px 28px; font-size:1rem; font-weight:700; display:flex; align-items:center; gap:8px;
+      margin-top:4px; transition:background 0.2s; cursor:pointer;
+    }
+    .notif-badge {
+      background:#ff4757; color:white; border-radius:50%; width:22px; height:22px;
+      display:inline-flex; align-items:center; justify-content:center; font-size:0.72rem; font-weight:900;
+    }
+
+    /* ── ELLA ─────────────────────────────── */
+    .ella-bg { min-height:100vh; background:linear-gradient(160deg,#050010 0%,#130330 35%,#0a1230 70%,#030c20 100%); color:#fff; font-family:'Space Grotesk',sans-serif; padding-bottom:80px; }
+    .ella-header { display:flex; align-items:center; gap:12px; padding:16px 20px; background:rgba(255,255,255,0.04); border-bottom:1px solid rgba(255,255,255,0.07); position:sticky; top:0; z-index:10; backdrop-filter:blur(20px); }
+    .back-btn { background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.1); border-radius:10px; padding:8px 12px; color:rgba(255,255,255,0.7); font-size:0.9rem; cursor:pointer; }
+    .ella-header-title { font-size:1.2rem; font-weight:700; color:#c8a8ff; flex:1; }
+    .ella-stars-disp { display:flex; align-items:center; gap:6px; background:rgba(255,215,0,0.12); border:1px solid rgba(255,215,0,0.25); border-radius:20px; padding:6px 14px; font-size:1rem; font-weight:800; color:#ffd700; }
+    .ella-lvl-bar { margin:16px 20px; background:rgba(255,255,255,0.05); border:1px solid rgba(180,140,255,0.2); border-radius:14px; padding:12px 16px; display:flex; align-items:center; gap:12px; }
+    .lvl-icon { font-size:1.6rem; }
+    .lvl-name { font-size:0.9rem; font-weight:700; color:#c8a8ff; }
+    .lvl-sub  { font-size:0.72rem; color:rgba(200,168,255,0.5); margin-top:1px; }
+    .prog-outer { flex:1; height:6px; background:rgba(255,255,255,0.08); border-radius:3px; overflow:hidden; margin-top:4px; }
+    .prog-inner { height:100%; background:linear-gradient(90deg,#b48cff,#ffd700); border-radius:3px; transition:width 0.6s ease; }
+    .ella-section { padding:0 20px; margin-top:20px; }
+    .ella-sec-label { font-size:0.72rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(180,140,255,0.6); margin-bottom:10px; }
+    .ella-task { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.07); border-radius:16px; padding:14px 16px; display:flex; align-items:center; gap:14px; margin-bottom:8px; cursor:pointer; transition:all 0.15s; }
+    .ella-task:hover { background:rgba(255,255,255,0.07); }
+    .ella-task.st-approved { border-color:rgba(0,220,120,0.25); background:rgba(0,220,120,0.05); }
+    .ella-task.st-pending  { border-color:rgba(255,200,0,0.25);  background:rgba(255,200,0,0.04); }
+    .task-icon { font-size:1.8rem; width:44px; text-align:center; flex-shrink:0; }
+    .task-body { flex:1; min-width:0; }
+    .task-label { font-size:0.95rem; font-weight:700; color:#fff; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .task-desc  { font-size:0.75rem; color:rgba(255,255,255,0.4); margin-top:2px; }
+    .task-right { display:flex; align-items:center; gap:8px; flex-shrink:0; }
+    .stars-pill { font-size:0.72rem; color:rgba(255,215,0,0.7); font-weight:700; }
+    .chip { font-size:0.72rem; font-weight:800; padding:4px 10px; border-radius:20px; }
+    .chip-approved { background:rgba(0,220,120,0.18); color:#00dc78; }
+    .chip-pending  { background:rgba(255,200,0,0.18);  color:#ffd700; }
+    .chip-todo     { background:rgba(180,140,255,0.15); color:#b48cff; }
+    .ella-rewards { margin:20px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.07); border-radius:20px; overflow:hidden; }
+    .ella-rew-title { padding:14px 16px 10px; font-size:0.72rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(180,140,255,0.6); border-bottom:1px solid rgba(255,255,255,0.06); }
+    .ella-rew-row { display:flex; align-items:center; gap:12px; padding:12px 16px; border-bottom:1px solid rgba(255,255,255,0.04); }
+    .ella-rew-row:last-child { border-bottom:none; }
+    .ella-rew-row.unlocked { background:rgba(255,215,0,0.05); }
+    .ella-rew-row.claimed  { opacity:0.5; }
+    .rew-emoji { font-size:1.4rem; width:30px; text-align:center; }
+    .rew-info  { flex:1; }
+    .rew-name  { font-size:0.9rem; font-weight:700; color:#fff; }
+    .rew-desc  { font-size:0.72rem; color:rgba(255,255,255,0.4); }
+    .rew-cost  { font-size:0.8rem; font-weight:800; color:#ffd700; white-space:nowrap; }
+    .rew-claimed { font-size:0.72rem; color:#00dc78; font-weight:800; }
+    .ella-claim-btn { background:linear-gradient(135deg,#b48cff,#7c3aed); color:#fff; border-radius:10px; padding:6px 14px; font-size:0.8rem; font-weight:800; cursor:pointer; border:none; }
+    .ella-rew-next { padding:10px 16px; font-size:0.78rem; color:rgba(255,255,255,0.3); }
+
+    /* ── CHANNA ───────────────────────────── */
+    .channa-bg { min-height:100vh; background:linear-gradient(160deg,#fff0f8 0%,#ffe8fa 30%,#ede8ff 65%,#fff8e0 100%); font-family:'Nunito',sans-serif; padding-bottom:80px; }
+    .channa-header { display:flex; align-items:center; gap:12px; padding:14px 16px; background:rgba(255,255,255,0.85); backdrop-filter:blur(20px); border-bottom:2px solid rgba(255,140,200,0.25); position:sticky; top:0; z-index:10; }
+    .channa-back-btn { background:rgba(255,150,210,0.15); border:1px solid rgba(255,150,210,0.3); border-radius:10px; padding:8px 12px; color:#cc3399; font-size:0.9rem; font-weight:700; cursor:pointer; }
+    .channa-header-title { font-size:1.2rem; font-weight:900; color:#cc3399; flex:1; }
+    .channa-star-cnt { background:linear-gradient(135deg,#ffb347,#ffcc02); border-radius:20px; padding:6px 14px; font-size:1.05rem; font-weight:900; color:#fff; text-shadow:0 1px 3px rgba(0,0,0,0.15); display:flex; align-items:center; gap:4px; }
+    .channa-lvl-banner { margin:14px 16px; background:white; border-radius:18px; padding:12px 16px; display:flex; align-items:center; gap:12px; box-shadow:0 4px 20px rgba(255,100,170,0.12); }
+    .channa-lvl-icon { font-size:1.8rem; animation:bounce 2s ease-in-out infinite; }
+    .channa-lvl-name { font-size:0.95rem; font-weight:900; color:#cc3399; }
+    .channa-lvl-sub  { font-size:0.72rem; color:rgba(180,50,130,0.5); margin-top:1px; }
+    .channa-prog-outer { flex:1; height:8px; background:rgba(255,150,210,0.2); border-radius:4px; overflow:hidden; margin-top:4px; }
+    .channa-prog-inner { height:100%; background:linear-gradient(90deg,#ff6eb4,#ffcc02); border-radius:4px; transition:width 0.6s ease; }
+    .channa-sec-label { font-size:1.1rem; font-weight:900; color:#cc3399; text-align:center; padding:16px 16px 10px; }
+    .channa-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; padding:0 16px; }
+    .channa-card { background:white; border-radius:20px; padding:16px 12px; text-align:center; box-shadow:0 4px 14px rgba(0,0,0,0.07); cursor:pointer; border:3px solid transparent; position:relative; transition:transform 0.15s; }
+    .channa-card:hover  { transform:scale(1.04); }
+    .channa-card:active { transform:scale(0.97); }
+    .channa-card.st-approved { border-color:#4caf50; background:linear-gradient(135deg,#f0fff4,#e8f5e9); }
+    .channa-card.st-pending  { border-color:#ffb347; background:linear-gradient(135deg,#fffdf0,#fff8e1); }
+    .channa-emoji { font-size:2.4rem; display:block; margin-bottom:6px; }
+    .channa-label { font-size:0.82rem; font-weight:900; color:#333; line-height:1.25; }
+    .channa-task-stars { font-size:0.7rem; color:#ffaa00; font-weight:800; margin-top:4px; }
+    .corner-badge { position:absolute; top:-8px; right:-8px; width:26px; height:26px; border-radius:50%; font-size:0.8rem; display:flex; align-items:center; justify-content:center; font-weight:900; }
+    .badge-approved { background:#4caf50; color:white; }
+    .badge-pending  { background:#ffb347; color:white; }
+    .channa-weekly-list { padding:0 16px; }
+    .channa-wk-card { background:white; border-radius:18px; padding:14px 16px; display:flex; align-items:center; gap:12px; margin-bottom:10px; box-shadow:0 4px 14px rgba(0,0,0,0.07); cursor:pointer; border:3px solid transparent; transition:transform 0.15s; }
+    .channa-wk-card:hover  { transform:scale(1.02); }
+    .channa-wk-card.st-approved { border-color:#4caf50; background:linear-gradient(135deg,#f0fff4,#e8f5e9); }
+    .channa-wk-card.st-pending  { border-color:#ffb347; background:linear-gradient(135deg,#fffdf0,#fff8e1); }
+    .wk-icon  { font-size:2rem; flex-shrink:0; }
+    .wk-label { font-size:0.95rem; font-weight:900; color:#333; flex:1; }
+    .wk-desc  { font-size:0.75rem; color:#888; margin-top:2px; }
+    .wk-stars { font-size:0.8rem; font-weight:900; color:#ffaa00; }
+    .wk-st-approved { color:#4caf50; font-size:0.8rem; font-weight:800; }
+    .wk-st-pending  { color:#ff9900; font-size:0.8rem; font-weight:800; }
+    .channa-rewards { margin:8px 16px 0; background:white; border-radius:24px; box-shadow:0 4px 20px rgba(0,0,0,0.07); overflow:hidden; }
+    .channa-rew-title { padding:14px 16px 10px; font-size:1rem; font-weight:900; color:#cc3399; border-bottom:2px solid #ffe0f0; }
+    .channa-rew-row { display:flex; align-items:center; gap:12px; padding:12px 16px; border-bottom:1px solid #fdf0f8; }
+    .channa-rew-row:last-child { border-bottom:none; }
+    .channa-rew-row.unlocked { background:linear-gradient(135deg,#fff8f0,#fff0f8); }
+    .channa-rew-row.claimed  { opacity:0.5; }
+    .c-rew-emoji { font-size:1.8rem; width:36px; text-align:center; }
+    .c-rew-info  { flex:1; }
+    .c-rew-name  { font-size:0.9rem; font-weight:900; color:#333; }
+    .c-rew-desc  { font-size:0.72rem; color:#888; }
+    .c-rew-cost  { font-size:0.85rem; font-weight:900; color:#ffaa00; white-space:nowrap; }
+    .c-rew-claimed { font-size:0.75rem; color:#4caf50; font-weight:900; }
+    .channa-claim-btn { background:linear-gradient(135deg,#ff6eb4,#ff3399); color:white; border-radius:12px; padding:6px 14px; font-size:0.82rem; font-weight:900; cursor:pointer; border:none; }
+    .channa-rew-next { padding:10px 16px; font-size:0.8rem; color:#aaa; text-align:center; }
+
+    /* ── DAD ─────────────────────────────── */
+    .dad-bg { min-height:100vh; background:#f2f4fa; font-family:'Nunito',sans-serif; padding-bottom:80px; }
+    .dad-header { display:flex; align-items:center; gap:12px; padding:14px 16px; background:white; border-bottom:1px solid #eee; position:sticky; top:0; z-index:10; }
+    .dad-back-btn { background:#f0f0f0; border:none; border-radius:10px; padding:8px 12px; color:#555; font-size:0.9rem; font-weight:700; cursor:pointer; }
+    .dad-header-title { font-size:1.2rem; font-weight:900; color:#222; flex:1; }
+    .dad-section { padding:16px; }
+    .dad-sec-title { font-size:0.75rem; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; color:#999; margin-bottom:10px; display:flex; align-items:center; gap:8px; }
+    .appr-card { background:white; border-radius:16px; padding:16px; margin-bottom:10px; box-shadow:0 2px 10px rgba(0,0,0,0.06); }
+    .appr-top { display:flex; align-items:center; gap:10px; margin-bottom:12px; }
+    .girl-tag { font-size:0.72rem; font-weight:800; padding:3px 10px; border-radius:20px; }
+    .ella-tag   { background:#e8d5ff; color:#6600cc; }
+    .channa-tag { background:#ffd6f0; color:#cc0066; }
+    .appr-icon  { font-size:1.4rem; }
+    .appr-label { font-size:1rem; font-weight:800; color:#222; flex:1; }
+    .appr-stars { font-size:0.85rem; font-weight:800; color:#ffaa00; }
+    .appr-sub   { font-size:0.75rem; color:#aaa; margin-bottom:10px; }
+    .appr-btns  { display:flex; gap:8px; }
+    .btn-approve { flex:1; background:linear-gradient(135deg,#4caf50,#43a047); color:white; border:none; border-radius:12px; padding:10px; font-size:0.9rem; font-weight:800; cursor:pointer; }
+    .btn-reject  { flex:1; background:linear-gradient(135deg,#ef5350,#e53935); color:white; border:none; border-radius:12px; padding:10px; font-size:0.9rem; font-weight:800; cursor:pointer; }
+    .rew-claim-card { background:white; border-radius:16px; padding:16px; margin-bottom:10px; box-shadow:0 2px 10px rgba(0,0,0,0.06); display:flex; align-items:center; gap:12px; }
+    .rc-emoji { font-size:2rem; }
+    .rc-info  { flex:1; }
+    .rc-girl  { font-size:0.72rem; font-weight:800; margin-bottom:2px; display:inline-block; padding:2px 8px; border-radius:20px; }
+    .rc-name  { font-size:1rem; font-weight:800; color:#222; }
+    .rc-cost  { font-size:0.8rem; color:#ffaa00; font-weight:700; }
+    .btn-give { background:linear-gradient(135deg,#ff6eb4,#ff3399); color:white; border:none; border-radius:12px; padding:10px 14px; font-size:0.85rem; font-weight:800; cursor:pointer; white-space:nowrap; }
+    .stats-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    .stat-card { background:white; border-radius:16px; padding:16px; box-shadow:0 2px 10px rgba(0,0,0,0.06); text-align:center; }
+    .stat-icon  { font-size:2rem; margin-bottom:6px; }
+    .stat-name  { font-size:0.85rem; font-weight:800; color:#555; margin-bottom:4px; }
+    .stat-stars { font-size:1.5rem; font-weight:900; color:#ffaa00; }
+    .stat-life  { font-size:0.72rem; color:#aaa; margin-top:2px; }
+    .bonus-card { flex:1; background:white; border-radius:16px; padding:14px 12px; box-shadow:0 2px 10px rgba(0,0,0,0.06); text-align:center; }
+    .bonus-name { font-weight:800; margin-bottom:10px; font-size:0.9rem; }
+    .bonus-btns { display:flex; gap:6px; justify-content:center; }
+    .bonus-btn  { background:linear-gradient(135deg,#ffb347,#ffcc02); color:white; border:none; border-radius:10px; padding:8px 10px; font-weight:900; font-size:0.85rem; cursor:pointer; }
+    .empty-state { text-align:center; padding:32px 20px; color:#bbb; font-size:0.9rem; }
+
+    /* ── MODAL ───────────────────────────── */
+    .modal-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.55); display:flex; align-items:flex-end; justify-content:center; z-index:100; padding:0 16px 24px; }
+    .modal-box { background:white; border-radius:28px; padding:28px 24px; width:100%; max-width:400px; text-align:center; animation:slideUp 0.25s ease; }
+    .m-emoji { font-size:3.5rem; display:block; margin-bottom:12px; }
+    .m-title { font-size:1.3rem; font-weight:900; color:#222; margin-bottom:6px; }
+    .m-desc  { font-size:0.9rem; color:#666; margin-bottom:22px; }
+    .m-btns  { display:flex; gap:10px; }
+    .m-no    { flex:1; padding:14px; border-radius:14px; font-size:1rem; font-weight:800; border:none; background:#f0f0f0; color:#555; cursor:pointer; font-family:inherit; }
+    .m-yes   { flex:1; padding:14px; border-radius:14px; font-size:1rem; font-weight:900; border:none; cursor:pointer; color:white; font-family:inherit; }
+    .ella-yes   { background:linear-gradient(135deg,#b48cff,#7c3aed); }
+    .channa-yes { background:linear-gradient(135deg,#ff6eb4,#ff3399); }
+    .celebrate-modal { background:white; border-radius:28px; padding:36px 24px; width:100%; max-width:380px; text-align:center; animation:popIn 0.35s cubic-bezier(0.175,0.885,0.32,1.275); }
+    .cel-emoji { font-size:4rem; display:block; margin-bottom:12px; }
+    .cel-title { font-size:1.5rem; font-weight:900; color:#222; margin-bottom:8px; }
+    .cel-desc  { font-size:0.95rem; color:#666; margin-bottom:24px; }
+    .cel-btn   { width:100%; padding:14px; border-radius:14px; font-size:1rem; font-weight:900; border:none; cursor:pointer; color:white; font-family:inherit; }
+    .ela-cel   { background:linear-gradient(135deg,#b48cff,#7c3aed); }
+    .cha-cel   { background:linear-gradient(135deg,#ff6eb4,#ff3399); }
+
+    @keyframes bounce    { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-5px)} }
+    @keyframes slideUp   { from{transform:translateY(100%);opacity:0} to{transform:translateY(0);opacity:1} }
+    @keyframes popIn     { from{transform:scale(0.7);opacity:0} to{transform:scale(1);opacity:1} }
+    @keyframes fadeIn    { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+    .fade-in { animation:fadeIn 0.3s ease forwards; }
+    @media(min-width:600px){.modal-overlay{align-items:center} .ella-bg,.channa-bg,.dad-bg{max-width:480px;margin:0 auto}}
+    @media(max-width:360px){.channa-emoji{font-size:2rem} .channa-label{font-size:0.75rem}}
+  </style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+
+/* ═══════════════════════════════════════════════════
+   DATA
+═══════════════════════════════════════════════════ */
+const ELLA_DAILY = [
+  {id:'morning',     label:'Morning Routine',      icon:'☀️',  stars:2, desc:'Ready for the day'},
+  {id:'bed-room',    label:'Bed & Room Tidy',       icon:'🛏️', stars:3, desc:'Make bed, tidy room & clothes'},
+  {id:'healthy',     label:'Healthy Food Choice',   icon:'🥗',  stars:2, desc:'Chose something healthy'},
+  {id:'dishes',      label:'Clear & Wash Dishes',   icon:'🍽️', stars:2, desc:'After every meal'},
+  {id:'help-channa', label:'Help Channa',           icon:'💕',  stars:4, desc:'Be a great big sister'},
+  {id:'house-chore', label:'House Chore',           icon:'🏠',  stars:3, desc:'Help Dad around the house'},
+];
+const ELLA_WEEKLY = [
+  {id:'laundry',    label:'Full Laundry Cycle', icon:'🧺', stars:15, desc:'Wash → Dry → Fold → Put Away'},
+  {id:'deep-clean', label:'Deep Clean Room',    icon:'✨', stars:10, desc:'Vacuum, dust, organize everything'},
+];
+const CHANNA_DAILY = [
+  {id:'wake-up',     label:'Wake Up on Time',       icon:'⏰',  stars:2, desc:'Up and ready!'},
+  {id:'brush-teeth', label:'Brush My Teeth',        icon:'🦷',  stars:2, desc:'Shiny clean teeth!'},
+  {id:'wash-face',   label:'Wash My Face',          icon:'💧',  stars:2, desc:'Fresh and sparkly!'},
+  {id:'get-dressed', label:'Get Dressed Myself',    icon:'👗',  stars:3, desc:'All by myself!'},
+  {id:'make-bed',    label:'Make My Bed',           icon:'🛏️', stars:3, desc:'Nice and cozy!'},
+  {id:'tidy-room',   label:'Tidy My Room',          icon:'🧸',  stars:3, desc:'Everything in place!'},
+  {id:'healthy',     label:'Eat Something Healthy', icon:'🥦',  stars:3, desc:'Yummy & good for me!'},
+  {id:'dishes',      label:'Clear My Dishes',       icon:'🍽️', stars:2, desc:'After every meal!'},
+];
+const CHANNA_WEEKLY = [
+  {id:'laundry-in',  label:'Laundry to Machine', icon:'🧺', stars:5, desc:'Collect & put in washer'},
+  {id:'laundry-dry', label:'Move to Dryer',       icon:'🌀', stars:5, desc:'When washing is done!'},
+  {id:'fold',        label:'Fold & Put Away',     icon:'👚', stars:8, desc:'Neatly folded in drawers!'},
+];
+const REWARDS = [
+  {id:'sweet',      emoji:'🍬', label:'Sweet Treat',       stars:30,  desc:'Any sweet you choose!'},
+  {id:'screen',     emoji:'📱', label:'Extra Screen Time', stars:50,  desc:'30 extra minutes!'},
+  {id:'movie',      emoji:'🎬', label:'Movie Night',       stars:80,  desc:'Pick your favorite movie!'},
+  {id:'restaurant', emoji:'🍕', label:'Restaurant Pick',   stars:150, desc:'You choose where we eat!'},
+  {id:'outing',     emoji:'🎡', label:'Special Day Out',   stars:300, desc:'A magical day out!'},
+  {id:'adventure',  emoji:'🦁', label:'Big Adventure',     stars:500, desc:'Zoo, theme park – you pick!'},
+];
+const ELLA_LEVELS = [
+  {min:0,   icon:'⭐',  label:'Star Cadet'},
+  {min:50,  icon:'🌟',  label:'Star Explorer'},
+  {min:150, icon:'💫',  label:'Star Commander'},
+  {min:300, icon:'🌙',  label:'Moon Guardian'},
+  {min:500, icon:'🚀',  label:'Galaxy Hero'},
+  {min:1000,icon:'🌌',  label:'Universe Champion'},
+];
+const CHANNA_LEVELS = [
+  {min:0,   icon:'🌱', label:'Tiny Star'},
+  {min:30,  icon:'🌸', label:'Star Sprout'},
+  {min:80,  icon:'🌈', label:'Rainbow Friend'},
+  {min:150, icon:'🦄', label:'Unicorn Star'},
+  {min:300, icon:'🌟', label:'Magic Star'},
+  {min:500, icon:'✨', label:'Super Star!'},
+];
+const getLevel    = (pts,ls)=>{ let c=ls[0]; for(const l of ls){if(pts>=l.min)c=l;else break;} return c; };
+const getNextLvl  = (pts,ls)=>{ for(const l of ls){if(pts<l.min)return l;} return null; };
+
+/* ═══════════════════════════════════════════════════
+   STORAGE
+═══════════════════════════════════════════════════ */
+const KEY = 'star-sisters-v1';
+const blank = ()=>({
+  ella:   {currentStars:0, lifetimeStars:0, tasks:{}, rewardRequests:[], claimedRewards:[]},
+  channa: {currentStars:0, lifetimeStars:0, tasks:{}, rewardRequests:[], claimedRewards:[]},
+  pendingApprovals:[],
+});
+const loadState = ()=>{ try{ const r=localStorage.getItem(KEY); if(!r)return blank(); const p=JSON.parse(r); const b=blank(); return {ella:{...b.ella,...p.ella}, channa:{...b.channa,...p.channa}, pendingApprovals:p.pendingApprovals||[]}; }catch{return blank();} };
+const saveState = s=>localStorage.setItem(KEY,JSON.stringify(s));
+const todayKey  = ()=>new Date().toISOString().split('T')[0];
+const weekKey   = ()=>{ const d=new Date(),day=d.getDay()||7,thu=new Date(d); thu.setDate(d.getDate()-day+4); const jan1=new Date(thu.getFullYear(),0,1),wn=Math.ceil(((thu-jan1)/86400000+1)/7); return `${thu.getFullYear()}-W${String(wn).padStart(2,'0')}`; };
+const tKey      = (type,dk,id)=>`${type}::${dk}::${id}`;
+const getTS     = (girl,type,id)=>{ const dk=type==='daily'?todayKey():weekKey(); return girl.tasks[tKey(type,dk,id)]||null; };
+
+/* ═══════════════════════════════════════════════════
+   HOME
+═══════════════════════════════════════════════════ */
+const FLOATS = ['✦','✧','⋆','✦','✧','⋆','✦','✧','⋆','✦'];
+function Home({onSelect,state}){
+  const el=getLevel(state.ella.lifetimeStars,ELLA_LEVELS);
+  const ch=getLevel(state.channa.lifetimeStars,CHANNA_LEVELS);
+  const pend=state.pendingApprovals.length;
+  return (
+    <div className="home-bg">
+      <div className="home-stars-layer" aria-hidden="true">
+        {FLOATS.map((s,i)=>(
+          <span key={i} className="float-star" style={{left:`${5+i*9.5}%`,animationDuration:`${4+(i%3)}s`,animationDelay:`${i*0.5}s`,fontSize:`${0.7+(i%3)*0.3}rem`}}>{s}</span>
+        ))}
+      </div>
+      <h1 className="home-title">⭐ Star Sisters ⭐</h1>
+      <p className="home-sub">CHOOSE YOUR PROFILE</p>
+
+      <button className="profile-btn ella-profile-btn" onClick={()=>onSelect('ella')}>
+        <span className="ella-icon">🌙</span>
+        <span style={{flex:1,textAlign:'left'}}>
+          <div className="ella-name">Ella</div>
+          <div className="ella-lvl">{el.icon} {el.label}</div>
+        </span>
+        <span className="ella-stars">⭐ {state.ella.currentStars}</span>
+      </button>
+
+      <button className="profile-btn channa-profile-btn" onClick={()=>onSelect('channa')}>
+        <span className="channa-icon">🌈</span>
+        <span style={{flex:1,textAlign:'left'}}>
+          <div className="channa-name">Channa</div>
+          <div className="channa-lvl">{ch.icon} {ch.label}</div>
+        </span>
+        <span className="channa-stars">⭐ {state.channa.currentStars}</span>
+      </button>
+
+      <button className="dad-btn" onClick={()=>onSelect('dad')}>
+        👨 Dad's Panel {pend>0&&<span className="notif-badge">{pend}</span>}
+      </button>
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════════════
+   ELLA VIEW
+═══════════════════════════════════════════════════ */
+function EllaView({state,update,onBack}){
+  const [confirm,setConfirm]=React.useState(null);
+  const [celebrate,setCelebrate]=React.useState(null);
+  const [claimC,setClaimC]=React.useState(null);
+  const ella=state.ella;
+  const lvl=getLevel(ella.lifetimeStars,ELLA_LEVELS);
+  const nxt=getNextLvl(ella.lifetimeStars,ELLA_LEVELS);
+  const prog=nxt?Math.min(100,((ella.lifetimeStars-lvl.min)/(nxt.min-lvl.min))*100):100;
+
+  const submit=()=>{
+    const t=confirm;
+    const dk=t.type==='daily'?todayKey():weekKey();
+    const k=tKey(t.type,dk,t.id);
+    const ap={id:Math.random().toString(36).slice(2),girl:'ella',taskId:t.id,type:t.type,dateKey:dk,storageKey:k,taskLabel:t.label,taskIcon:t.icon,taskStars:t.stars,taskDesc:t.desc,ts:Date.now()};
+    update({...state,ella:{...ella,tasks:{...ella.tasks,[k]:'pending'}},pendingApprovals:[...state.pendingApprovals,ap]});
+    setConfirm(null); setCelebrate(t);
+  };
+  const submitClaim=()=>{
+    const r=claimC;
+    const ap={id:Math.random().toString(36).slice(2),girl:'ella',type:'reward',rewardId:r.id,rewardEmoji:r.emoji,taskLabel:r.label,taskIcon:r.emoji,taskStars:r.stars,taskDesc:r.desc,ts:Date.now()};
+    update({...state,ella:{...ella,rewardRequests:[...ella.rewardRequests,r.id]},pendingApprovals:[...state.pendingApprovals,ap]});
+    setClaimC(null);
+  };
+
+  const renderTask=(task,type)=>{
+    const dk=type==='daily'?todayKey():weekKey();
+    const k=tKey(type,dk,task.id);
+    const st=ella.tasks[k]||null;
+    const chipTxt=st==='approved'?'✓ Done':st==='pending'?'⏳ Waiting':'+Tap';
+    const chipCls=st==='approved'?'chip chip-approved':st==='pending'?'chip chip-pending':'chip chip-todo';
+    return (
+      <div key={task.id} className={`ella-task fade-in${st?' st-'+st:''}`} onClick={()=>!st&&setConfirm({...task,type})}>
+        <div className="task-icon">{task.icon}</div>
+        <div className="task-body"><div className="task-label">{task.label}</div><div className="task-desc">{task.desc}</div></div>
+        <div className="task-right"><span className="stars-pill">+{task.stars}⭐</span><span className={chipCls}>{chipTxt}</span></div>
+      </div>
+    );
+  };
+
+  const nxtRew=REWARDS.find(r=>!ella.claimedRewards.includes(r.id));
+  return (
+    <div className="ella-bg">
+      <div className="ella-header">
+        <button className="back-btn" onClick={onBack}>← Back</button>
+        <div className="ella-header-title">🌙 Ella's Space</div>
+        <div className="ella-stars-disp">⭐ {ella.currentStars}</div>
+      </div>
+      <div className="ella-lvl-bar">
+        <span className="lvl-icon">{lvl.icon}</span>
+        <div style={{flex:1}}>
+          <div className="lvl-name">{lvl.label}</div>
+          <div className="lvl-sub">{nxt?`${ella.lifetimeStars}/${nxt.min} → ${nxt.label}`:"Max level! 🌌"}</div>
+          <div className="prog-outer"><div className="prog-inner" style={{width:`${prog}%`}}/></div>
+        </div>
+      </div>
+      <div className="ella-section"><div className="ella-sec-label">📅 Today's Missions</div>{ELLA_DAILY.map(t=>renderTask(t,'daily'))}</div>
+      <div className="ella-section"><div className="ella-sec-label">📆 This Week's Quests</div>{ELLA_WEEKLY.map(t=>renderTask(t,'weekly'))}</div>
+      <div className="ella-rewards">
+        <div className="ella-rew-title">🏆 REWARDS TRACK</div>
+        {REWARDS.map(r=>{
+          const claimed=ella.claimedRewards.includes(r.id);
+          const req=ella.rewardRequests.includes(r.id);
+          const can=!claimed&&!req&&ella.currentStars>=r.stars;
+          return (
+            <div key={r.id} className={`ella-rew-row${can?' unlocked':''}${claimed?' claimed':''}`}>
+              <span className="rew-emoji">{r.emoji}</span>
+              <div className="rew-info"><div className="rew-name">{r.label}</div><div className="rew-desc">{r.desc}</div></div>
+              {claimed?<span className="rew-claimed">✓ Claimed</span>:req?<span className="chip chip-pending">⏳</span>:<span className="rew-cost">⭐{r.stars}</span>}
+              {can&&<button className="ella-claim-btn" onClick={()=>setClaimC(r)}>Claim!</button>}
+            </div>
+          );
+        })}
+        {nxtRew&&!ella.claimedRewards.includes(nxtRew.id)&&<div className="ella-rew-next">Next: {nxtRew.emoji} {nxtRew.label} — {Math.max(0,nxtRew.stars-ella.currentStars)} more ⭐ needed</div>}
+      </div>
+
+      {confirm&&<div className="modal-overlay" onClick={()=>setConfirm(null)}><div className="modal-box" onClick={e=>e.stopPropagation()}>
+        <span className="m-emoji">{confirm.icon}</span>
+        <div className="m-title">Did you do this?</div>
+        <div className="m-desc">{confirm.label} — {confirm.desc}</div>
+        <div className="m-btns"><button className="m-no" onClick={()=>setConfirm(null)}>Not yet</button><button className="m-yes ella-yes" onClick={submit}>Yes! ⭐ +{confirm.stars}</button></div>
+      </div></div>}
+      {celebrate&&<div className="modal-overlay" onClick={()=>setCelebrate(null)}><div className="celebrate-modal" onClick={e=>e.stopPropagation()}>
+        <span className="cel-emoji">🌟</span>
+        <div className="cel-title">Amazing, Ella!</div>
+        <div className="cel-desc">{celebrate.label} submitted!<br/>Waiting for Dad → <strong>⭐ {celebrate.stars} stars</strong></div>
+        <button className="cel-btn ela-cel" onClick={()=>setCelebrate(null)}>Keep going! 💫</button>
+      </div></div>}
+      {claimC&&<div className="modal-overlay" onClick={()=>setClaimC(null)}><div className="modal-box" onClick={e=>e.stopPropagation()}>
+        <span className="m-emoji">{claimC.emoji}</span>
+        <div className="m-title">Claim reward?</div>
+        <div className="m-desc">{claimC.label}<br/><strong>⭐ {claimC.stars} stars — Dad will confirm!</strong></div>
+        <div className="m-btns"><button className="m-no" onClick={()=>setClaimC(null)}>Not yet</button><button className="m-yes ella-yes" onClick={submitClaim}>Yes, claim it!</button></div>
+      </div></div>}
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════════════
+   CHANNA VIEW
+═══════════════════════════════════════════════════ */
+function ChannaView({state,update,onBack}){
+  const [confirm,setConfirm]=React.useState(null);
+  const [celebrate,setCelebrate]=React.useState(null);
+  const [claimC,setClaimC]=React.useState(null);
+  const channa=state.channa;
+  const lvl=getLevel(channa.lifetimeStars,CHANNA_LEVELS);
+  const nxt=getNextLvl(channa.lifetimeStars,CHANNA_LEVELS);
+  const prog=nxt?Math.min(100,((channa.lifetimeStars-lvl.min)/(nxt.min-lvl.min))*100):100;
+
+  const submit=()=>{
+    const t=confirm;
+    const dk=t.type==='daily'?todayKey():weekKey();
+    const k=tKey(t.type,dk,t.id);
+    const ap={id:Math.random().toString(36).slice(2),girl:'channa',taskId:t.id,type:t.type,dateKey:dk,storageKey:k,taskLabel:t.label,taskIcon:t.icon,taskStars:t.stars,taskDesc:t.desc,ts:Date.now()};
+    update({...state,channa:{...channa,tasks:{...channa.tasks,[k]:'pending'}},pendingApprovals:[...state.pendingApprovals,ap]});
+    setConfirm(null); setCelebrate(t);
+  };
+  const submitClaim=()=>{
+    const r=claimC;
+    const ap={id:Math.random().toString(36).slice(2),girl:'channa',type:'reward',rewardId:r.id,rewardEmoji:r.emoji,taskLabel:r.label,taskIcon:r.emoji,taskStars:r.stars,taskDesc:r.desc,ts:Date.now()};
+    update({...state,channa:{...channa,rewardRequests:[...channa.rewardRequests,r.id]},pendingApprovals:[...state.pendingApprovals,ap]});
+    setClaimC(null);
+  };
+
+  const renderCard=task=>{
+    const st=getTS(channa,'daily',task.id);
+    return (
+      <div key={task.id} className={`channa-card${st?' st-'+st:''}`} onClick={()=>!st&&setConfirm({...task,type:'daily'})}>
+        {st&&<span className={`corner-badge badge-${st}`}>{st==='approved'?'✓':'⏳'}</span>}
+        <span className="channa-emoji">{task.icon}</span>
+        <div className="channa-label">{task.label}</div>
+        {!st&&<div className="channa-task-stars">+{task.stars} ⭐</div>}
+      </div>
+    );
+  };
+  const renderWk=task=>{
+    const st=getTS(channa,'weekly',task.id);
+    return (
+      <div key={task.id} className={`channa-wk-card${st?' st-'+st:''}`} onClick={()=>!st&&setConfirm({...task,type:'weekly'})}>
+        <span className="wk-icon">{task.icon}</span>
+        <div style={{flex:1}}><div className="wk-label">{task.label}</div><div className="wk-desc">{task.desc}</div></div>
+        {st==='approved'&&<span className="wk-st-approved">✓ Done!</span>}
+        {st==='pending' &&<span className="wk-st-pending">⏳ Waiting</span>}
+        {!st&&<span className="wk-stars">+{task.stars}⭐</span>}
+      </div>
+    );
+  };
+  const nxtRew=REWARDS.find(r=>!channa.claimedRewards.includes(r.id));
+  return (
+    <div className="channa-bg">
+      <div className="channa-header">
+        <button className="channa-back-btn" onClick={onBack}>← Back</button>
+        <div className="channa-header-title">🌈 Channa's World</div>
+        <div className="channa-star-cnt">⭐ {channa.currentStars}</div>
+      </div>
+      <div className="channa-lvl-banner">
+        <span className="channa-lvl-icon">{lvl.icon}</span>
+        <div style={{flex:1}}>
+          <div className="channa-lvl-name">{lvl.label}</div>
+          <div className="channa-lvl-sub">{nxt?`${channa.lifetimeStars}/${nxt.min} ⭐ → ${nxt.label} ${nxt.icon}`:"You're the SUPER STAR! ✨"}</div>
+          <div className="channa-prog-outer"><div className="channa-prog-inner" style={{width:`${prog}%`}}/></div>
+        </div>
+      </div>
+      <div className="channa-sec-label">🌟 Today's Adventures!</div>
+      <div className="channa-grid">{CHANNA_DAILY.map(renderCard)}</div>
+      <div className="channa-sec-label">🌈 This Week's Quests!</div>
+      <div className="channa-weekly-list">{CHANNA_WEEKLY.map(renderWk)}</div>
+      <div className="channa-sec-label">🎁 My Wish List!</div>
+      <div className="channa-rewards">
+        <div className="channa-rew-title">You have ⭐ {channa.currentStars} stars!</div>
+        {REWARDS.map(r=>{
+          const claimed=channa.claimedRewards.includes(r.id);
+          const req=channa.rewardRequests.includes(r.id);
+          const can=!claimed&&!req&&channa.currentStars>=r.stars;
+          return (
+            <div key={r.id} className={`channa-rew-row${can?' unlocked':''}${claimed?' claimed':''}`}>
+              <span className="c-rew-emoji">{r.emoji}</span>
+              <div className="c-rew-info"><div className="c-rew-name">{r.label}</div><div className="c-rew-desc">{r.desc}</div></div>
+              {claimed?<span className="c-rew-claimed">✓ Got it!</span>:req?<span style={{fontSize:'0.8rem',color:'#ff9900',fontWeight:800}}>⏳</span>:<span className="c-rew-cost">⭐{r.stars}</span>}
+              {can&&<button className="channa-claim-btn" onClick={()=>setClaimC(r)}>Claim! 🎉</button>}
+            </div>
+          );
+        })}
+        {nxtRew&&!channa.claimedRewards.includes(nxtRew.id)&&<div className="channa-rew-next">Next: {nxtRew.emoji} {nxtRew.label} — {Math.max(0,nxtRew.stars-channa.currentStars)} more ⭐!</div>}
+      </div>
+
+      {confirm&&<div className="modal-overlay" onClick={()=>setConfirm(null)}><div className="modal-box" onClick={e=>e.stopPropagation()}>
+        <span className="m-emoji">{confirm.icon}</span>
+        <div className="m-title">Did you really do it? 🎉</div>
+        <div className="m-desc">{confirm.label}</div>
+        <div className="m-btns"><button className="m-no" onClick={()=>setConfirm(null)}>Not yet</button><button className="m-yes channa-yes" onClick={submit}>Yes! ⭐ +{confirm.stars}</button></div>
+      </div></div>}
+      {celebrate&&<div className="modal-overlay" onClick={()=>setCelebrate(null)}><div className="celebrate-modal" onClick={e=>e.stopPropagation()}>
+        <span className="cel-emoji">🎊</span>
+        <div className="cel-title">YAY, Channa!! 🎉</div>
+        <div className="cel-desc">You did <strong>{celebrate.label}</strong>! 🌟<br/>Waiting for Daddy → <strong>⭐ {celebrate.stars} stars</strong>!</div>
+        <button className="cel-btn cha-cel" onClick={()=>setCelebrate(null)}>Woohoo! 🦄</button>
+      </div></div>}
+      {claimC&&<div className="modal-overlay" onClick={()=>setClaimC(null)}><div className="modal-box" onClick={e=>e.stopPropagation()}>
+        <span className="m-emoji">{claimC.emoji}</span>
+        <div className="m-title">Do you want this? 🎉</div>
+        <div className="m-desc">{claimC.label}<br/><strong>⭐ {claimC.stars} stars — Daddy will say yes!</strong></div>
+        <div className="m-btns"><button className="m-no" onClick={()=>setClaimC(null)}>Not now</button><button className="m-yes channa-yes" onClick={submitClaim}>Yes please! 🙏</button></div>
+      </div></div>}
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════════════
+   DAD VIEW
+═══════════════════════════════════════════════════ */
+const fmtTime=ts=>{const d=new Date(ts);return d.toLocaleString('en-US',{weekday:'short',hour:'2-digit',minute:'2-digit'});};
+function DadView({state,update,onBack}){
+  const {ella,channa,pendingApprovals}=state;
+  const taskAp=pendingApprovals.filter(a=>a.type!=='reward');
+  const rewAp =pendingApprovals.filter(a=>a.type==='reward');
+
+  const approve=item=>{
+    const g=state[item.girl];
+    update({...state,[item.girl]:{...g,currentStars:g.currentStars+item.taskStars,lifetimeStars:g.lifetimeStars+item.taskStars,tasks:{...g.tasks,[item.storageKey]:'approved'}},pendingApprovals:pendingApprovals.filter(a=>a.id!==item.id)});
+  };
+  const reject=item=>{
+    const g=state[item.girl]; const t={...g.tasks}; delete t[item.storageKey];
+    update({...state,[item.girl]:{...g,tasks:t},pendingApprovals:pendingApprovals.filter(a=>a.id!==item.id)});
+  };
+  const giveReward=item=>{
+    const g=state[item.girl];
+    update({...state,[item.girl]:{...g,currentStars:Math.max(0,g.currentStars-item.taskStars),rewardRequests:g.rewardRequests.filter(id=>id!==item.rewardId),claimedRewards:[...g.claimedRewards,item.rewardId]},pendingApprovals:pendingApprovals.filter(a=>a.id!==item.id)});
+  };
+  const denyReward=item=>{
+    const g=state[item.girl];
+    update({...state,[item.girl]:{...g,rewardRequests:g.rewardRequests.filter(id=>id!==item.rewardId)},pendingApprovals:pendingApprovals.filter(a=>a.id!==item.id)});
+  };
+  const bonus=(girl,n)=>{const g=state[girl];update({...state,[girl]:{...g,currentStars:g.currentStars+n,lifetimeStars:g.lifetimeStars+n}});};
+
+  const elLvl=getLevel(ella.lifetimeStars,ELLA_LEVELS);
+  const chLvl=getLevel(channa.lifetimeStars,CHANNA_LEVELS);
+
+  return (
+    <div className="dad-bg">
+      <div className="dad-header">
+        <button className="dad-back-btn" onClick={onBack}>← Back</button>
+        <div className="dad-header-title">👨 Dad's Panel</div>
+        {pendingApprovals.length>0&&<span className="notif-badge">{pendingApprovals.length}</span>}
+      </div>
+
+      <div className="dad-section">
+        <div className="dad-sec-title">⏳ NEEDS APPROVAL {taskAp.length>0&&<span className="notif-badge">{taskAp.length}</span>}</div>
+        {taskAp.length===0&&<div className="empty-state">✅ All caught up! Nothing to approve.</div>}
+        {taskAp.map(item=>(
+          <div key={item.id} className="appr-card fade-in">
+            <div className="appr-top">
+              <span className={`girl-tag ${item.girl}-tag`}>{item.girl==='ella'?'Ella':'Channa'}</span>
+              <span className="appr-icon">{item.taskIcon}</span>
+              <span className="appr-label">{item.taskLabel}</span>
+              <span className="appr-stars">+{item.taskStars}⭐</span>
+            </div>
+            <div className="appr-sub">{item.taskDesc} · {fmtTime(item.ts)}</div>
+            <div className="appr-btns">
+              <button className="btn-reject"  onClick={()=>reject(item)}>✗ Not done</button>
+              <button className="btn-approve" onClick={()=>approve(item)}>✓ Approve +{item.taskStars}⭐</button>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {rewAp.length>0&&<div className="dad-section">
+        <div className="dad-sec-title">🎁 REWARD REQUESTS <span className="notif-badge">{rewAp.length}</span></div>
+        {rewAp.map(item=>(
+          <div key={item.id} className="rew-claim-card fade-in">
+            <span className="rc-emoji">{item.rewardEmoji}</span>
+            <div className="rc-info">
+              <span className={`rc-girl ${item.girl}-tag`}>{item.girl==='ella'?'Ella':'Channa'}</span>
+              <div className="rc-name">{item.taskLabel}</div>
+              <div className="rc-cost">⭐{item.taskStars} stars · {fmtTime(item.ts)}</div>
+            </div>
+            <div style={{display:'flex',flexDirection:'column',gap:6}}>
+              <button className="btn-give" onClick={()=>giveReward(item)}>Give it! 🎉</button>
+              <button onClick={()=>denyReward(item)} style={{background:'#f0f0f0',color:'#666',border:'none',borderRadius:10,padding:'6px 10px',fontSize:'0.8rem',fontWeight:700,cursor:'pointer',fontFamily:'inherit'}}>Not yet</button>
+            </div>
+          </div>
+        ))}
+      </div>}
+
+      <div className="dad-section">
+        <div className="dad-sec-title">📊 PROGRESS</div>
+        <div className="stats-row">
+          <div className="stat-card"><div className="stat-icon">🌙</div><div className="stat-name">Ella</div><div className="stat-stars">⭐ {ella.currentStars}</div><div className="stat-life">{elLvl.icon} {elLvl.label}</div><div className="stat-life">{ella.lifetimeStars} total earned</div></div>
+          <div className="stat-card"><div className="stat-icon">🌈</div><div className="stat-name">Channa</div><div className="stat-stars">⭐ {channa.currentStars}</div><div className="stat-life">{chLvl.icon} {chLvl.label}</div><div className="stat-life">{channa.lifetimeStars} total earned</div></div>
+        </div>
+      </div>
+
+      <div className="dad-section">
+        <div className="dad-sec-title">⭐ BONUS STARS</div>
+        <div style={{display:'flex',gap:10}}>
+          <div className="bonus-card"><div className="bonus-name">🌙 Ella</div><div className="bonus-btns">{[1,3,5].map(n=><button key={n} className="bonus-btn" onClick={()=>bonus('ella',n)}>+{n}⭐</button>)}</div></div>
+          <div className="bonus-card"><div className="bonus-name">🌈 Channa</div><div className="bonus-btns">{[1,3,5].map(n=><button key={n} className="bonus-btn" onClick={()=>bonus('channa',n)}>+{n}⭐</button>)}</div></div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════════════
+   APP
+═══════════════════════════════════════════════════ */
+function App(){
+  const [view,setView]=React.useState('home');
+  const [st,setSt]=React.useState(loadState);
+  const update=ns=>{setSt(ns);saveState(ns);};
+  const props={state:st,update,onBack:()=>setView('home')};
+  return (
+    <>
+      {view==='home'   &&<Home    onSelect={setView} state={st}/>}
+      {view==='ella'   &&<EllaView   {...props}/>}
+      {view==='channa' &&<ChannaView {...props}/>}
+      {view==='dad'    &&<DadView    {...props}/>}
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+</body>
+</html>
