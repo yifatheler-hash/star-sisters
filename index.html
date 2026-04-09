@@ -15,63 +15,26 @@
     button { font-family: inherit; cursor: pointer; border: none; }
 
     /* ── HOME ─────────────────────────────── */
-    .home-bg {
-      min-height: 100vh;
-      background: linear-gradient(150deg, #0d0221 0%, #1a0533 30%, #0f1a4a 65%, #0a2a1a 100%);
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      padding: 24px 20px; position: relative; overflow: hidden;
-    }
-    .home-stars-layer { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
-    .float-star {
-      position: absolute; color: rgba(255,220,80,0.4);
-      animation: floatUp linear infinite; user-select: none;
-    }
-    @keyframes floatUp {
-      0%   { transform: translateY(110vh) rotate(0deg); opacity: 0; }
-      10%  { opacity: 1; }
-      90%  { opacity: 0.6; }
-      100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
-    }
-    .home-title {
-      font-size: clamp(2rem, 8vw, 3rem); font-weight: 900; color: #fff;
-      text-align: center; margin-bottom: 6px;
-      text-shadow: 0 0 40px rgba(255,215,0,0.6);
-    }
-    .home-sub { font-size: 0.85rem; color: rgba(255,255,255,0.4); margin-bottom: 36px; letter-spacing: 2px; text-transform: uppercase; }
-    .profile-btn {
-      width: 100%; max-width: 380px; border-radius: 24px; padding: 20px 24px;
-      display: flex; align-items: center; gap: 16px; margin-bottom: 14px;
-      transition: transform 0.18s; cursor: pointer;
-    }
-    .profile-btn:active { transform: scale(0.97); }
-    .ella-profile-btn {
-      background: linear-gradient(135deg, #0d001f 0%, #1e0b4f 40%, #0b1a3a 100%);
-      border: 2px solid rgba(160,110,255,0.5);
-      box-shadow: 0 8px 32px rgba(100,40,220,0.35), inset 0 1px 0 rgba(255,255,255,0.08);
-    }
-    .ella-icon { font-size: 2.8rem; text-shadow: 0 0 20px rgba(180,140,255,0.8); }
-    .ella-name { font-size: 1.5rem; font-weight: 900; color: #c8a8ff; font-family:'Space Grotesk',sans-serif; }
-    .ella-lvl  { font-size: 0.78rem; color: rgba(200,168,255,0.6); margin-top: 2px; }
+    .home-bg { min-height:100vh; background:linear-gradient(150deg,#0d0221 0%,#1a0533 30%,#0f1a4a 65%,#0a2a1a 100%); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:24px 20px; position:relative; overflow:hidden; }
+    .home-stars-layer { position:absolute; inset:0; pointer-events:none; overflow:hidden; }
+    .float-star { position:absolute; color:rgba(255,220,80,0.4); animation:floatUp linear infinite; user-select:none; }
+    @keyframes floatUp { 0%{transform:translateY(110vh) rotate(0deg);opacity:0} 10%{opacity:1} 90%{opacity:0.6} 100%{transform:translateY(-10vh) rotate(360deg);opacity:0} }
+    .home-title { font-size:clamp(2rem,8vw,3rem); font-weight:900; color:#fff; text-align:center; margin-bottom:6px; text-shadow:0 0 40px rgba(255,215,0,0.6); }
+    .home-sub { font-size:0.85rem; color:rgba(255,255,255,0.4); margin-bottom:36px; letter-spacing:2px; text-transform:uppercase; }
+    .profile-btn { width:100%; max-width:380px; border-radius:24px; padding:20px 24px; display:flex; align-items:center; gap:16px; margin-bottom:14px; transition:transform 0.18s; cursor:pointer; }
+    .profile-btn:active { transform:scale(0.97); }
+    .ella-profile-btn { background:linear-gradient(135deg,#0d001f 0%,#1e0b4f 40%,#0b1a3a 100%); border:2px solid rgba(160,110,255,0.5); box-shadow:0 8px 32px rgba(100,40,220,0.35),inset 0 1px 0 rgba(255,255,255,0.08); }
+    .ella-icon { font-size:2.8rem; text-shadow:0 0 20px rgba(180,140,255,0.8); }
+    .ella-name { font-size:1.5rem; font-weight:900; color:#c8a8ff; font-family:'Space Grotesk',sans-serif; }
+    .ella-lvl  { font-size:0.78rem; color:rgba(200,168,255,0.6); margin-top:2px; }
     .ella-stars { margin-left:auto; background:rgba(255,215,0,0.15); border:1px solid rgba(255,215,0,0.3); border-radius:20px; padding:6px 14px; font-size:1rem; font-weight:900; color:#ffd700; white-space:nowrap; }
-    .channa-profile-btn {
-      background: linear-gradient(135deg, #ff6eb4 0%, #ff9ecf 40%, #ffb3e6 100%);
-      border: 2px solid rgba(255,200,230,0.8);
-      box-shadow: 0 8px 32px rgba(255,80,160,0.35);
-    }
-    .channa-icon { font-size: 2.8rem; }
+    .channa-profile-btn { background:linear-gradient(135deg,#ff6eb4 0%,#ff9ecf 40%,#ffb3e6 100%); border:2px solid rgba(255,200,230,0.8); box-shadow:0 8px 32px rgba(255,80,160,0.35); }
+    .channa-icon { font-size:2.8rem; }
     .channa-name { font-size:1.5rem; font-weight:900; color:#fff; text-shadow:0 1px 4px rgba(0,0,0,0.2); }
     .channa-lvl  { font-size:0.78rem; color:rgba(255,255,255,0.75); margin-top:2px; }
     .channa-stars { margin-left:auto; background:rgba(255,255,255,0.3); border-radius:20px; padding:6px 14px; font-size:1rem; font-weight:900; color:#fff; text-shadow:0 1px 3px rgba(0,0,0,0.15); white-space:nowrap; }
-    .dad-btn {
-      background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15);
-      backdrop-filter:blur(10px); color:rgba(255,255,255,0.75); border-radius:16px;
-      padding:14px 28px; font-size:1rem; font-weight:700; display:flex; align-items:center; gap:8px;
-      margin-top:4px; transition:background 0.2s; cursor:pointer;
-    }
-    .notif-badge {
-      background:#ff4757; color:white; border-radius:50%; width:22px; height:22px;
-      display:inline-flex; align-items:center; justify-content:center; font-size:0.72rem; font-weight:900;
-    }
+    .dad-btn { background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); backdrop-filter:blur(10px); color:rgba(255,255,255,0.75); border-radius:16px; padding:14px 28px; font-size:1rem; font-weight:700; display:flex; align-items:center; gap:8px; margin-top:4px; transition:background 0.2s; cursor:pointer; }
+    .notif-badge { background:#ff4757; color:white; border-radius:50%; width:22px; height:22px; display:inline-flex; align-items:center; justify-content:center; font-size:0.72rem; font-weight:900; }
 
     /* ── ELLA ─────────────────────────────── */
     .ella-bg { min-height:100vh; background:linear-gradient(160deg,#050010 0%,#130330 35%,#0a1230 70%,#030c20 100%); color:#fff; font-family:'Space Grotesk',sans-serif; padding-bottom:80px; }
@@ -205,12 +168,25 @@
     .bonus-btn  { background:linear-gradient(135deg,#ffb347,#ffcc02); color:white; border:none; border-radius:10px; padding:8px 10px; font-weight:900; font-size:0.85rem; cursor:pointer; }
     .empty-state { text-align:center; padding:32px 20px; color:#bbb; font-size:0.9rem; }
 
+    /* ── PROOF MEDIA ─────────────────────── */
+    .proof-btn { display:flex; align-items:center; justify-content:center; gap:8px; background:rgba(180,140,255,0.08); border:2px dashed rgba(180,140,255,0.3); border-radius:14px; padding:11px; width:100%; cursor:pointer; font-size:0.88rem; font-weight:700; color:rgba(180,140,255,0.8); margin-bottom:14px; transition:background 0.15s; }
+    .proof-btn:hover { background:rgba(180,140,255,0.14); }
+    .proof-btn-channa { background:rgba(255,100,170,0.07); border-color:rgba(255,100,170,0.3); color:#cc3399; }
+    .proof-btn-channa:hover { background:rgba(255,100,170,0.13); }
+    .proof-preview { position:relative; margin-bottom:14px; border-radius:14px; overflow:hidden; max-height:180px; }
+    .proof-preview img, .proof-preview video { width:100%; max-height:180px; object-fit:cover; display:block; }
+    .proof-remove { position:absolute; top:8px; right:8px; background:rgba(0,0,0,0.55); color:white; border:none; border-radius:50%; width:28px; height:28px; cursor:pointer; font-size:0.85rem; display:flex; align-items:center; justify-content:center; }
+    /* Dad's media viewer */
+    .dad-media { border-radius:10px; overflow:hidden; margin-bottom:10px; max-height:220px; background:#000; }
+    .dad-media img, .dad-media video { width:100%; max-height:220px; object-fit:contain; display:block; }
+    .dad-media-loading { padding:12px; text-align:center; color:#aaa; font-size:0.85rem; background:#f8f8f8; border-radius:10px; margin-bottom:10px; }
+
     /* ── MODAL ───────────────────────────── */
     .modal-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.55); display:flex; align-items:flex-end; justify-content:center; z-index:100; padding:0 16px 24px; }
     .modal-box { background:white; border-radius:28px; padding:28px 24px; width:100%; max-width:400px; text-align:center; animation:slideUp 0.25s ease; }
     .m-emoji { font-size:3.5rem; display:block; margin-bottom:12px; }
     .m-title { font-size:1.3rem; font-weight:900; color:#222; margin-bottom:6px; }
-    .m-desc  { font-size:0.9rem; color:#666; margin-bottom:22px; }
+    .m-desc  { font-size:0.9rem; color:#666; margin-bottom:16px; }
     .m-btns  { display:flex; gap:10px; }
     .m-no    { flex:1; padding:14px; border-radius:14px; font-size:1rem; font-weight:800; border:none; background:#f0f0f0; color:#555; cursor:pointer; font-family:inherit; }
     .m-yes   { flex:1; padding:14px; border-radius:14px; font-size:1rem; font-weight:900; border:none; cursor:pointer; color:white; font-family:inherit; }
@@ -236,6 +212,56 @@
 <body>
 <div id="root"></div>
 <script type="text/babel">
+
+/* ═══════════════════════════════════════════════════
+   INDEXEDDB — media storage
+═══════════════════════════════════════════════════ */
+const DB_NAME = 'star-sisters-media';
+let _db = null;
+
+function openDB() {
+  if (_db) return Promise.resolve(_db);
+  return new Promise((res, rej) => {
+    const req = indexedDB.open(DB_NAME, 1);
+    req.onupgradeneeded = e => {
+      e.target.result.createObjectStore('media', { keyPath: 'id' });
+    };
+    req.onsuccess = e => { _db = e.target.result; res(_db); };
+    req.onerror   = e => rej(e.target.error);
+  });
+}
+
+async function saveMedia(id, file) {
+  const db = await openDB();
+  return new Promise((res, rej) => {
+    const tx = db.transaction('media', 'readwrite');
+    tx.objectStore('media').put({ id, file, mime: file.type });
+    tx.oncomplete = res;
+    tx.onerror = rej;
+  });
+}
+
+async function getMedia(id) {
+  const db = await openDB();
+  return new Promise((res, rej) => {
+    const tx = db.transaction('media', 'readonly');
+    const req = tx.objectStore('media').get(id);
+    req.onsuccess = e => res(e.target.result);
+    req.onerror   = rej;
+  });
+}
+
+async function deleteMedia(id) {
+  try {
+    const db = await openDB();
+    return new Promise((res, rej) => {
+      const tx = db.transaction('media', 'readwrite');
+      tx.objectStore('media').delete(id);
+      tx.oncomplete = res;
+      tx.onerror = rej;
+    });
+  } catch(e) { /* ignore */ }
+}
 
 /* ═══════════════════════════════════════════════════
    DATA
@@ -270,7 +296,8 @@ const CHANNA_WEEKLY = [
 const REWARDS = [
   {id:'sweet',      emoji:'🍬', label:'Sweet Treat',       stars:30,  desc:'Any sweet you choose!'},
   {id:'screen',     emoji:'📱', label:'Extra Screen Time', stars:50,  desc:'30 extra minutes!'},
-  {id:'movie',      emoji:'🎬', label:'Movie Night',       stars:80,  desc:'Pick your favorite movie!'},
+  {id:'money',      emoji:'💰', label:'Pocket Money',      stars:80,  desc:'Real money from Dad!'},
+  {id:'movie',      emoji:'🎬', label:'Movie Night',       stars:100, desc:'Pick your favorite movie!'},
   {id:'restaurant', emoji:'🍕', label:'Restaurant Pick',   stars:150, desc:'You choose where we eat!'},
   {id:'outing',     emoji:'🎡', label:'Special Day Out',   stars:300, desc:'A magical day out!'},
   {id:'adventure',  emoji:'🦁', label:'Big Adventure',     stars:500, desc:'Zoo, theme park – you pick!'},
@@ -291,8 +318,8 @@ const CHANNA_LEVELS = [
   {min:300, icon:'🌟', label:'Magic Star'},
   {min:500, icon:'✨', label:'Super Star!'},
 ];
-const getLevel    = (pts,ls)=>{ let c=ls[0]; for(const l of ls){if(pts>=l.min)c=l;else break;} return c; };
-const getNextLvl  = (pts,ls)=>{ for(const l of ls){if(pts<l.min)return l;} return null; };
+const getLevel   = (pts,ls)=>{ let c=ls[0]; for(const l of ls){if(pts>=l.min)c=l;else break;} return c; };
+const getNextLvl = (pts,ls)=>{ for(const l of ls){if(pts<l.min)return l;} return null; };
 
 /* ═══════════════════════════════════════════════════
    STORAGE
@@ -311,24 +338,142 @@ const tKey      = (type,dk,id)=>`${type}::${dk}::${id}`;
 const getTS     = (girl,type,id)=>{ const dk=type==='daily'?todayKey():weekKey(); return girl.tasks[tKey(type,dk,id)]||null; };
 
 /* ═══════════════════════════════════════════════════
+   SHARED: ConfirmModal (with optional photo/video proof)
+═══════════════════════════════════════════════════ */
+function ConfirmModal({ task, theme, onConfirm, onCancel }) {
+  const [mediaFile, setMediaFile] = React.useState(null);
+  const [preview,   setPreview]   = React.useState(null);
+  const fileRef = React.useRef();
+  const isChanna = theme === 'channa';
+
+  const handleFile = e => {
+    const f = e.target.files[0];
+    if (!f) return;
+    if (preview) URL.revokeObjectURL(preview);
+    setMediaFile(f);
+    setPreview(URL.createObjectURL(f));
+  };
+
+  const removeFile = () => {
+    if (preview) URL.revokeObjectURL(preview);
+    setMediaFile(null);
+    setPreview(null);
+  };
+
+  React.useEffect(() => () => { if (preview) URL.revokeObjectURL(preview); }, []);
+
+  return (
+    <div className="modal-overlay" onClick={onCancel}>
+      <div className="modal-box" onClick={e => e.stopPropagation()}>
+        <span className="m-emoji">{task.icon}</span>
+        <div className="m-title">{isChanna ? 'Did you really do it? 🎉' : 'Did you do this?'}</div>
+        <div className="m-desc">{task.label}{!isChanna && ` — ${task.desc}`}</div>
+
+        {/* Proof section */}
+        <input ref={fileRef} type="file" accept="image/*,video/*" style={{display:'none'}} onChange={handleFile} />
+        {preview ? (
+          <div className="proof-preview">
+            {mediaFile?.type.startsWith('video')
+              ? <video src={preview} controls />
+              : <img src={preview} alt="proof" />}
+            <button className="proof-remove" onClick={removeFile}>✕</button>
+          </div>
+        ) : (
+          <button
+            className={`proof-btn${isChanna ? ' proof-btn-channa' : ''}`}
+            onClick={() => fileRef.current.click()}
+          >
+            📷 Add Proof Photo / Video <span style={{fontSize:'0.75rem',opacity:0.6}}>(optional)</span>
+          </button>
+        )}
+
+        <div className="m-btns">
+          <button className="m-no"  onClick={onCancel}>Not yet</button>
+          <button className={`m-yes ${isChanna ? 'channa-yes' : 'ella-yes'}`}
+                  onClick={() => onConfirm(mediaFile)}>
+            Yes! ⭐ +{task.stars}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════════════
+   SHARED: CelebrateModal
+═══════════════════════════════════════════════════ */
+function CelebrateModal({ task, theme, onClose }) {
+  const isChanna = theme === 'channa';
+  return (
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="celebrate-modal" onClick={e => e.stopPropagation()}>
+        <span className="cel-emoji">{isChanna ? '🎊' : '🌟'}</span>
+        <div className="cel-title">{isChanna ? 'YAY, Channa!! 🎉' : 'Amazing, Ella!'}</div>
+        <div className="cel-desc">
+          {isChanna ? <>You did <strong>{task.label}</strong>! 🌟<br/></> : <>{task.label} submitted!<br/></>}
+          Waiting for Dad → <strong>⭐ {task.stars} stars</strong>{task.hasMedia ? ' 📷' : ''}!
+        </div>
+        <button className={`cel-btn ${isChanna ? 'cha-cel' : 'ela-cel'}`} onClick={onClose}>
+          {isChanna ? 'Woohoo! 🦄' : 'Keep going! 💫'}
+        </button>
+      </div>
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════════════
+   DAD: MediaViewer
+═══════════════════════════════════════════════════ */
+function MediaViewer({ approvalId }) {
+  const [src,  setSrc]  = React.useState(null);
+  const [mime, setMime] = React.useState(null);
+  const [err,  setErr]  = React.useState(false);
+
+  React.useEffect(() => {
+    let url;
+    getMedia(approvalId).then(rec => {
+      if (rec && rec.file) {
+        url = URL.createObjectURL(rec.file);
+        setSrc(url);
+        setMime(rec.mime);
+      } else {
+        setErr(true);
+      }
+    }).catch(() => setErr(true));
+    return () => { if (url) URL.revokeObjectURL(url); };
+  }, [approvalId]);
+
+  if (err)  return <div className="dad-media-loading">⚠️ Proof not found (page was refreshed?)</div>;
+  if (!src) return <div className="dad-media-loading">⏳ Loading proof...</div>;
+
+  return (
+    <div className="dad-media">
+      {mime?.startsWith('video')
+        ? <video src={src} controls />
+        : <img src={src} alt="proof" />}
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════════════
    HOME
 ═══════════════════════════════════════════════════ */
 const FLOATS = ['✦','✧','⋆','✦','✧','⋆','✦','✧','⋆','✦'];
-function Home({onSelect,state}){
-  const el=getLevel(state.ella.lifetimeStars,ELLA_LEVELS);
-  const ch=getLevel(state.channa.lifetimeStars,CHANNA_LEVELS);
-  const pend=state.pendingApprovals.length;
+function Home({ onSelect, state }) {
+  const el   = getLevel(state.ella.lifetimeStars,   ELLA_LEVELS);
+  const ch   = getLevel(state.channa.lifetimeStars, CHANNA_LEVELS);
+  const pend = state.pendingApprovals.length;
   return (
     <div className="home-bg">
       <div className="home-stars-layer" aria-hidden="true">
-        {FLOATS.map((s,i)=>(
+        {FLOATS.map((s,i) => (
           <span key={i} className="float-star" style={{left:`${5+i*9.5}%`,animationDuration:`${4+(i%3)}s`,animationDelay:`${i*0.5}s`,fontSize:`${0.7+(i%3)*0.3}rem`}}>{s}</span>
         ))}
       </div>
       <h1 className="home-title">⭐ Star Sisters ⭐</h1>
       <p className="home-sub">CHOOSE YOUR PROFILE</p>
 
-      <button className="profile-btn ella-profile-btn" onClick={()=>onSelect('ella')}>
+      <button className="profile-btn ella-profile-btn" onClick={() => onSelect('ella')}>
         <span className="ella-icon">🌙</span>
         <span style={{flex:1,textAlign:'left'}}>
           <div className="ella-name">Ella</div>
@@ -337,7 +482,7 @@ function Home({onSelect,state}){
         <span className="ella-stars">⭐ {state.ella.currentStars}</span>
       </button>
 
-      <button className="profile-btn channa-profile-btn" onClick={()=>onSelect('channa')}>
+      <button className="profile-btn channa-profile-btn" onClick={() => onSelect('channa')}>
         <span className="channa-icon">🌈</span>
         <span style={{flex:1,textAlign:'left'}}>
           <div className="channa-name">Channa</div>
@@ -346,56 +491,89 @@ function Home({onSelect,state}){
         <span className="channa-stars">⭐ {state.channa.currentStars}</span>
       </button>
 
-      <button className="dad-btn" onClick={()=>onSelect('dad')}>
-        👨 Dad's Panel {pend>0&&<span className="notif-badge">{pend}</span>}
+      <button className="dad-btn" onClick={() => onSelect('dad')}>
+        👨 Dad's Panel {pend > 0 && <span className="notif-badge">{pend}</span>}
       </button>
     </div>
   );
 }
 
 /* ═══════════════════════════════════════════════════
+   SHARED submit helper
+═══════════════════════════════════════════════════ */
+async function buildApproval(girl, task, state, mediaFile) {
+  const dk  = task.type === 'daily' ? todayKey() : weekKey();
+  const k   = tKey(task.type, dk, task.id);
+  const apId = 'ap_' + Date.now() + '_' + Math.random().toString(36).slice(2);
+
+  if (mediaFile) {
+    try { await saveMedia(apId, mediaFile); } catch(e) { console.warn('media save failed', e); }
+  }
+
+  const ap = {
+    id: apId, girl, taskId: task.id, type: task.type,
+    dateKey: dk, storageKey: k,
+    taskLabel: task.label, taskIcon: task.icon,
+    taskStars: task.stars, taskDesc: task.desc,
+    hasMedia: !!mediaFile, ts: Date.now(),
+  };
+  return { ap, k };
+}
+
+/* ═══════════════════════════════════════════════════
    ELLA VIEW
 ═══════════════════════════════════════════════════ */
-function EllaView({state,update,onBack}){
-  const [confirm,setConfirm]=React.useState(null);
-  const [celebrate,setCelebrate]=React.useState(null);
-  const [claimC,setClaimC]=React.useState(null);
-  const ella=state.ella;
-  const lvl=getLevel(ella.lifetimeStars,ELLA_LEVELS);
-  const nxt=getNextLvl(ella.lifetimeStars,ELLA_LEVELS);
-  const prog=nxt?Math.min(100,((ella.lifetimeStars-lvl.min)/(nxt.min-lvl.min))*100):100;
+function EllaView({ state, update, onBack }) {
+  const [confirm,   setConfirm]   = React.useState(null);
+  const [celebrate, setCelebrate] = React.useState(null);
+  const [claimC,    setClaimC]    = React.useState(null);
+  const ella = state.ella;
+  const lvl  = getLevel(ella.lifetimeStars, ELLA_LEVELS);
+  const nxt  = getNextLvl(ella.lifetimeStars, ELLA_LEVELS);
+  const prog = nxt ? Math.min(100, ((ella.lifetimeStars - lvl.min) / (nxt.min - lvl.min)) * 100) : 100;
 
-  const submit=()=>{
-    const t=confirm;
-    const dk=t.type==='daily'?todayKey():weekKey();
-    const k=tKey(t.type,dk,t.id);
-    const ap={id:Math.random().toString(36).slice(2),girl:'ella',taskId:t.id,type:t.type,dateKey:dk,storageKey:k,taskLabel:t.label,taskIcon:t.icon,taskStars:t.stars,taskDesc:t.desc,ts:Date.now()};
-    update({...state,ella:{...ella,tasks:{...ella.tasks,[k]:'pending'}},pendingApprovals:[...state.pendingApprovals,ap]});
-    setConfirm(null); setCelebrate(t);
+  const submit = async (mediaFile) => {
+    const task = confirm;
+    const { ap, k } = await buildApproval('ella', task, state, mediaFile);
+    update({
+      ...state,
+      ella: { ...ella, tasks: { ...ella.tasks, [k]: 'pending' } },
+      pendingApprovals: [...state.pendingApprovals, ap],
+    });
+    setConfirm(null);
+    setCelebrate({ ...task, hasMedia: !!mediaFile });
   };
-  const submitClaim=()=>{
-    const r=claimC;
-    const ap={id:Math.random().toString(36).slice(2),girl:'ella',type:'reward',rewardId:r.id,rewardEmoji:r.emoji,taskLabel:r.label,taskIcon:r.emoji,taskStars:r.stars,taskDesc:r.desc,ts:Date.now()};
-    update({...state,ella:{...ella,rewardRequests:[...ella.rewardRequests,r.id]},pendingApprovals:[...state.pendingApprovals,ap]});
+
+  const submitClaim = () => {
+    const r  = claimC;
+    const ap = { id:'rw_'+Date.now(), girl:'ella', type:'reward', rewardId:r.id, rewardEmoji:r.emoji, taskLabel:r.label, taskIcon:r.emoji, taskStars:r.stars, taskDesc:r.desc, hasMedia:false, ts:Date.now() };
+    update({ ...state, ella: { ...ella, rewardRequests: [...ella.rewardRequests, r.id] }, pendingApprovals: [...state.pendingApprovals, ap] });
     setClaimC(null);
   };
 
-  const renderTask=(task,type)=>{
-    const dk=type==='daily'?todayKey():weekKey();
-    const k=tKey(type,dk,task.id);
-    const st=ella.tasks[k]||null;
-    const chipTxt=st==='approved'?'✓ Done':st==='pending'?'⏳ Waiting':'+Tap';
-    const chipCls=st==='approved'?'chip chip-approved':st==='pending'?'chip chip-pending':'chip chip-todo';
+  const renderTask = (task, type) => {
+    const dk = type === 'daily' ? todayKey() : weekKey();
+    const k  = tKey(type, dk, task.id);
+    const st = ella.tasks[k] || null;
+    const chipTxt = st === 'approved' ? '✓ Done' : st === 'pending' ? '⏳ Waiting' : '+Tap';
+    const chipCls = st === 'approved' ? 'chip chip-approved' : st === 'pending' ? 'chip chip-pending' : 'chip chip-todo';
     return (
-      <div key={task.id} className={`ella-task fade-in${st?' st-'+st:''}`} onClick={()=>!st&&setConfirm({...task,type})}>
+      <div key={task.id} className={`ella-task fade-in${st ? ' st-'+st : ''}`}
+           onClick={() => !st && setConfirm({ ...task, type })}>
         <div className="task-icon">{task.icon}</div>
-        <div className="task-body"><div className="task-label">{task.label}</div><div className="task-desc">{task.desc}</div></div>
-        <div className="task-right"><span className="stars-pill">+{task.stars}⭐</span><span className={chipCls}>{chipTxt}</span></div>
+        <div className="task-body">
+          <div className="task-label">{task.label}</div>
+          <div className="task-desc">{task.desc}</div>
+        </div>
+        <div className="task-right">
+          <span className="stars-pill">+{task.stars}⭐</span>
+          <span className={chipCls}>{chipTxt}</span>
+        </div>
       </div>
     );
   };
 
-  const nxtRew=REWARDS.find(r=>!ella.claimedRewards.includes(r.id));
+  const nxtRew = REWARDS.find(r => !ella.claimedRewards.includes(r.id));
   return (
     <div className="ella-bg">
       <div className="ella-header">
@@ -407,48 +585,52 @@ function EllaView({state,update,onBack}){
         <span className="lvl-icon">{lvl.icon}</span>
         <div style={{flex:1}}>
           <div className="lvl-name">{lvl.label}</div>
-          <div className="lvl-sub">{nxt?`${ella.lifetimeStars}/${nxt.min} → ${nxt.label}`:"Max level! 🌌"}</div>
-          <div className="prog-outer"><div className="prog-inner" style={{width:`${prog}%`}}/></div>
+          <div className="lvl-sub">{nxt ? `${ella.lifetimeStars}/${nxt.min} → ${nxt.label}` : 'Max level! 🌌'}</div>
+          <div className="prog-outer"><div className="prog-inner" style={{width:`${prog}%`}} /></div>
         </div>
       </div>
-      <div className="ella-section"><div className="ella-sec-label">📅 Today's Missions</div>{ELLA_DAILY.map(t=>renderTask(t,'daily'))}</div>
-      <div className="ella-section"><div className="ella-sec-label">📆 This Week's Quests</div>{ELLA_WEEKLY.map(t=>renderTask(t,'weekly'))}</div>
+      <div className="ella-section">
+        <div className="ella-sec-label">📅 Today's Missions</div>
+        {ELLA_DAILY.map(t => renderTask(t, 'daily'))}
+      </div>
+      <div className="ella-section">
+        <div className="ella-sec-label">📆 This Week's Quests</div>
+        {ELLA_WEEKLY.map(t => renderTask(t, 'weekly'))}
+      </div>
       <div className="ella-rewards">
         <div className="ella-rew-title">🏆 REWARDS TRACK</div>
-        {REWARDS.map(r=>{
-          const claimed=ella.claimedRewards.includes(r.id);
-          const req=ella.rewardRequests.includes(r.id);
-          const can=!claimed&&!req&&ella.currentStars>=r.stars;
+        {REWARDS.map(r => {
+          const claimed = ella.claimedRewards.includes(r.id);
+          const req     = ella.rewardRequests.includes(r.id);
+          const can     = !claimed && !req && ella.currentStars >= r.stars;
           return (
-            <div key={r.id} className={`ella-rew-row${can?' unlocked':''}${claimed?' claimed':''}`}>
+            <div key={r.id} className={`ella-rew-row${can ? ' unlocked' : ''}${claimed ? ' claimed' : ''}`}>
               <span className="rew-emoji">{r.emoji}</span>
               <div className="rew-info"><div className="rew-name">{r.label}</div><div className="rew-desc">{r.desc}</div></div>
-              {claimed?<span className="rew-claimed">✓ Claimed</span>:req?<span className="chip chip-pending">⏳</span>:<span className="rew-cost">⭐{r.stars}</span>}
-              {can&&<button className="ella-claim-btn" onClick={()=>setClaimC(r)}>Claim!</button>}
+              {claimed ? <span className="rew-claimed">✓ Claimed</span>
+                       : req ? <span className="chip chip-pending">⏳</span>
+                       : <span className="rew-cost">⭐{r.stars}</span>}
+              {can && <button className="ella-claim-btn" onClick={() => setClaimC(r)}>Claim!</button>}
             </div>
           );
         })}
-        {nxtRew&&!ella.claimedRewards.includes(nxtRew.id)&&<div className="ella-rew-next">Next: {nxtRew.emoji} {nxtRew.label} — {Math.max(0,nxtRew.stars-ella.currentStars)} more ⭐ needed</div>}
+        {nxtRew && !ella.claimedRewards.includes(nxtRew.id) && (
+          <div className="ella-rew-next">Next: {nxtRew.emoji} {nxtRew.label} — {Math.max(0, nxtRew.stars - ella.currentStars)} more ⭐ needed</div>
+        )}
       </div>
 
-      {confirm&&<div className="modal-overlay" onClick={()=>setConfirm(null)}><div className="modal-box" onClick={e=>e.stopPropagation()}>
-        <span className="m-emoji">{confirm.icon}</span>
-        <div className="m-title">Did you do this?</div>
-        <div className="m-desc">{confirm.label} — {confirm.desc}</div>
-        <div className="m-btns"><button className="m-no" onClick={()=>setConfirm(null)}>Not yet</button><button className="m-yes ella-yes" onClick={submit}>Yes! ⭐ +{confirm.stars}</button></div>
-      </div></div>}
-      {celebrate&&<div className="modal-overlay" onClick={()=>setCelebrate(null)}><div className="celebrate-modal" onClick={e=>e.stopPropagation()}>
-        <span className="cel-emoji">🌟</span>
-        <div className="cel-title">Amazing, Ella!</div>
-        <div className="cel-desc">{celebrate.label} submitted!<br/>Waiting for Dad → <strong>⭐ {celebrate.stars} stars</strong></div>
-        <button className="cel-btn ela-cel" onClick={()=>setCelebrate(null)}>Keep going! 💫</button>
-      </div></div>}
-      {claimC&&<div className="modal-overlay" onClick={()=>setClaimC(null)}><div className="modal-box" onClick={e=>e.stopPropagation()}>
-        <span className="m-emoji">{claimC.emoji}</span>
-        <div className="m-title">Claim reward?</div>
-        <div className="m-desc">{claimC.label}<br/><strong>⭐ {claimC.stars} stars — Dad will confirm!</strong></div>
-        <div className="m-btns"><button className="m-no" onClick={()=>setClaimC(null)}>Not yet</button><button className="m-yes ella-yes" onClick={submitClaim}>Yes, claim it!</button></div>
-      </div></div>}
+      {confirm && <ConfirmModal task={confirm} theme="ella" onConfirm={submit} onCancel={() => setConfirm(null)} />}
+      {celebrate && <CelebrateModal task={celebrate} theme="ella" onClose={() => setCelebrate(null)} />}
+      {claimC && (
+        <div className="modal-overlay" onClick={() => setClaimC(null)}>
+          <div className="modal-box" onClick={e => e.stopPropagation()}>
+            <span className="m-emoji">{claimC.emoji}</span>
+            <div className="m-title">Claim reward?</div>
+            <div className="m-desc">{claimC.label}<br/><strong>⭐ {claimC.stars} stars — Dad will confirm!</strong></div>
+            <div className="m-btns"><button className="m-no" onClick={() => setClaimC(null)}>Not yet</button><button className="m-yes ella-yes" onClick={submitClaim}>Yes, claim it!</button></div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
@@ -456,54 +638,62 @@ function EllaView({state,update,onBack}){
 /* ═══════════════════════════════════════════════════
    CHANNA VIEW
 ═══════════════════════════════════════════════════ */
-function ChannaView({state,update,onBack}){
-  const [confirm,setConfirm]=React.useState(null);
-  const [celebrate,setCelebrate]=React.useState(null);
-  const [claimC,setClaimC]=React.useState(null);
-  const channa=state.channa;
-  const lvl=getLevel(channa.lifetimeStars,CHANNA_LEVELS);
-  const nxt=getNextLvl(channa.lifetimeStars,CHANNA_LEVELS);
-  const prog=nxt?Math.min(100,((channa.lifetimeStars-lvl.min)/(nxt.min-lvl.min))*100):100;
+function ChannaView({ state, update, onBack }) {
+  const [confirm,   setConfirm]   = React.useState(null);
+  const [celebrate, setCelebrate] = React.useState(null);
+  const [claimC,    setClaimC]    = React.useState(null);
+  const channa = state.channa;
+  const lvl  = getLevel(channa.lifetimeStars, CHANNA_LEVELS);
+  const nxt  = getNextLvl(channa.lifetimeStars, CHANNA_LEVELS);
+  const prog = nxt ? Math.min(100, ((channa.lifetimeStars - lvl.min) / (nxt.min - lvl.min)) * 100) : 100;
 
-  const submit=()=>{
-    const t=confirm;
-    const dk=t.type==='daily'?todayKey():weekKey();
-    const k=tKey(t.type,dk,t.id);
-    const ap={id:Math.random().toString(36).slice(2),girl:'channa',taskId:t.id,type:t.type,dateKey:dk,storageKey:k,taskLabel:t.label,taskIcon:t.icon,taskStars:t.stars,taskDesc:t.desc,ts:Date.now()};
-    update({...state,channa:{...channa,tasks:{...channa.tasks,[k]:'pending'}},pendingApprovals:[...state.pendingApprovals,ap]});
-    setConfirm(null); setCelebrate(t);
+  const submit = async (mediaFile) => {
+    const task = confirm;
+    const { ap, k } = await buildApproval('channa', task, state, mediaFile);
+    update({
+      ...state,
+      channa: { ...channa, tasks: { ...channa.tasks, [k]: 'pending' } },
+      pendingApprovals: [...state.pendingApprovals, ap],
+    });
+    setConfirm(null);
+    setCelebrate({ ...task, hasMedia: !!mediaFile });
   };
-  const submitClaim=()=>{
-    const r=claimC;
-    const ap={id:Math.random().toString(36).slice(2),girl:'channa',type:'reward',rewardId:r.id,rewardEmoji:r.emoji,taskLabel:r.label,taskIcon:r.emoji,taskStars:r.stars,taskDesc:r.desc,ts:Date.now()};
-    update({...state,channa:{...channa,rewardRequests:[...channa.rewardRequests,r.id]},pendingApprovals:[...state.pendingApprovals,ap]});
+
+  const submitClaim = () => {
+    const r  = claimC;
+    const ap = { id:'rw_'+Date.now(), girl:'channa', type:'reward', rewardId:r.id, rewardEmoji:r.emoji, taskLabel:r.label, taskIcon:r.emoji, taskStars:r.stars, taskDesc:r.desc, hasMedia:false, ts:Date.now() };
+    update({ ...state, channa: { ...channa, rewardRequests: [...channa.rewardRequests, r.id] }, pendingApprovals: [...state.pendingApprovals, ap] });
     setClaimC(null);
   };
 
-  const renderCard=task=>{
-    const st=getTS(channa,'daily',task.id);
+  const renderCard = task => {
+    const st = getTS(channa, 'daily', task.id);
     return (
-      <div key={task.id} className={`channa-card${st?' st-'+st:''}`} onClick={()=>!st&&setConfirm({...task,type:'daily'})}>
-        {st&&<span className={`corner-badge badge-${st}`}>{st==='approved'?'✓':'⏳'}</span>}
+      <div key={task.id} className={`channa-card${st ? ' st-'+st : ''}`}
+           onClick={() => !st && setConfirm({ ...task, type: 'daily' })}>
+        {st && <span className={`corner-badge badge-${st}`}>{st === 'approved' ? '✓' : '⏳'}</span>}
         <span className="channa-emoji">{task.icon}</span>
         <div className="channa-label">{task.label}</div>
-        {!st&&<div className="channa-task-stars">+{task.stars} ⭐</div>}
+        {!st && <div className="channa-task-stars">+{task.stars} ⭐</div>}
       </div>
     );
   };
-  const renderWk=task=>{
-    const st=getTS(channa,'weekly',task.id);
+
+  const renderWk = task => {
+    const st = getTS(channa, 'weekly', task.id);
     return (
-      <div key={task.id} className={`channa-wk-card${st?' st-'+st:''}`} onClick={()=>!st&&setConfirm({...task,type:'weekly'})}>
+      <div key={task.id} className={`channa-wk-card${st ? ' st-'+st : ''}`}
+           onClick={() => !st && setConfirm({ ...task, type: 'weekly' })}>
         <span className="wk-icon">{task.icon}</span>
         <div style={{flex:1}}><div className="wk-label">{task.label}</div><div className="wk-desc">{task.desc}</div></div>
-        {st==='approved'&&<span className="wk-st-approved">✓ Done!</span>}
-        {st==='pending' &&<span className="wk-st-pending">⏳ Waiting</span>}
-        {!st&&<span className="wk-stars">+{task.stars}⭐</span>}
+        {st === 'approved' && <span className="wk-st-approved">✓ Done!</span>}
+        {st === 'pending'  && <span className="wk-st-pending">⏳ Waiting</span>}
+        {!st && <span className="wk-stars">+{task.stars}⭐</span>}
       </div>
     );
   };
-  const nxtRew=REWARDS.find(r=>!channa.claimedRewards.includes(r.id));
+
+  const nxtRew = REWARDS.find(r => !channa.claimedRewards.includes(r.id));
   return (
     <div className="channa-bg">
       <div className="channa-header">
@@ -515,8 +705,8 @@ function ChannaView({state,update,onBack}){
         <span className="channa-lvl-icon">{lvl.icon}</span>
         <div style={{flex:1}}>
           <div className="channa-lvl-name">{lvl.label}</div>
-          <div className="channa-lvl-sub">{nxt?`${channa.lifetimeStars}/${nxt.min} ⭐ → ${nxt.label} ${nxt.icon}`:"You're the SUPER STAR! ✨"}</div>
-          <div className="channa-prog-outer"><div className="channa-prog-inner" style={{width:`${prog}%`}}/></div>
+          <div className="channa-lvl-sub">{nxt ? `${channa.lifetimeStars}/${nxt.min} ⭐ → ${nxt.label} ${nxt.icon}` : "You're the SUPER STAR! ✨"}</div>
+          <div className="channa-prog-outer"><div className="channa-prog-inner" style={{width:`${prog}%`}} /></div>
         </div>
       </div>
       <div className="channa-sec-label">🌟 Today's Adventures!</div>
@@ -526,40 +716,38 @@ function ChannaView({state,update,onBack}){
       <div className="channa-sec-label">🎁 My Wish List!</div>
       <div className="channa-rewards">
         <div className="channa-rew-title">You have ⭐ {channa.currentStars} stars!</div>
-        {REWARDS.map(r=>{
-          const claimed=channa.claimedRewards.includes(r.id);
-          const req=channa.rewardRequests.includes(r.id);
-          const can=!claimed&&!req&&channa.currentStars>=r.stars;
+        {REWARDS.map(r => {
+          const claimed = channa.claimedRewards.includes(r.id);
+          const req     = channa.rewardRequests.includes(r.id);
+          const can     = !claimed && !req && channa.currentStars >= r.stars;
           return (
-            <div key={r.id} className={`channa-rew-row${can?' unlocked':''}${claimed?' claimed':''}`}>
+            <div key={r.id} className={`channa-rew-row${can ? ' unlocked' : ''}${claimed ? ' claimed' : ''}`}>
               <span className="c-rew-emoji">{r.emoji}</span>
               <div className="c-rew-info"><div className="c-rew-name">{r.label}</div><div className="c-rew-desc">{r.desc}</div></div>
-              {claimed?<span className="c-rew-claimed">✓ Got it!</span>:req?<span style={{fontSize:'0.8rem',color:'#ff9900',fontWeight:800}}>⏳</span>:<span className="c-rew-cost">⭐{r.stars}</span>}
-              {can&&<button className="channa-claim-btn" onClick={()=>setClaimC(r)}>Claim! 🎉</button>}
+              {claimed ? <span className="c-rew-claimed">✓ Got it!</span>
+                       : req ? <span style={{fontSize:'0.8rem',color:'#ff9900',fontWeight:800}}>⏳</span>
+                       : <span className="c-rew-cost">⭐{r.stars}</span>}
+              {can && <button className="channa-claim-btn" onClick={() => setClaimC(r)}>Claim! 🎉</button>}
             </div>
           );
         })}
-        {nxtRew&&!channa.claimedRewards.includes(nxtRew.id)&&<div className="channa-rew-next">Next: {nxtRew.emoji} {nxtRew.label} — {Math.max(0,nxtRew.stars-channa.currentStars)} more ⭐!</div>}
+        {nxtRew && !channa.claimedRewards.includes(nxtRew.id) && (
+          <div className="channa-rew-next">Next: {nxtRew.emoji} {nxtRew.label} — {Math.max(0, nxtRew.stars - channa.currentStars)} more ⭐!</div>
+        )}
       </div>
 
-      {confirm&&<div className="modal-overlay" onClick={()=>setConfirm(null)}><div className="modal-box" onClick={e=>e.stopPropagation()}>
-        <span className="m-emoji">{confirm.icon}</span>
-        <div className="m-title">Did you really do it? 🎉</div>
-        <div className="m-desc">{confirm.label}</div>
-        <div className="m-btns"><button className="m-no" onClick={()=>setConfirm(null)}>Not yet</button><button className="m-yes channa-yes" onClick={submit}>Yes! ⭐ +{confirm.stars}</button></div>
-      </div></div>}
-      {celebrate&&<div className="modal-overlay" onClick={()=>setCelebrate(null)}><div className="celebrate-modal" onClick={e=>e.stopPropagation()}>
-        <span className="cel-emoji">🎊</span>
-        <div className="cel-title">YAY, Channa!! 🎉</div>
-        <div className="cel-desc">You did <strong>{celebrate.label}</strong>! 🌟<br/>Waiting for Daddy → <strong>⭐ {celebrate.stars} stars</strong>!</div>
-        <button className="cel-btn cha-cel" onClick={()=>setCelebrate(null)}>Woohoo! 🦄</button>
-      </div></div>}
-      {claimC&&<div className="modal-overlay" onClick={()=>setClaimC(null)}><div className="modal-box" onClick={e=>e.stopPropagation()}>
-        <span className="m-emoji">{claimC.emoji}</span>
-        <div className="m-title">Do you want this? 🎉</div>
-        <div className="m-desc">{claimC.label}<br/><strong>⭐ {claimC.stars} stars — Daddy will say yes!</strong></div>
-        <div className="m-btns"><button className="m-no" onClick={()=>setClaimC(null)}>Not now</button><button className="m-yes channa-yes" onClick={submitClaim}>Yes please! 🙏</button></div>
-      </div></div>}
+      {confirm && <ConfirmModal task={confirm} theme="channa" onConfirm={submit} onCancel={() => setConfirm(null)} />}
+      {celebrate && <CelebrateModal task={celebrate} theme="channa" onClose={() => setCelebrate(null)} />}
+      {claimC && (
+        <div className="modal-overlay" onClick={() => setClaimC(null)}>
+          <div className="modal-box" onClick={e => e.stopPropagation()}>
+            <span className="m-emoji">{claimC.emoji}</span>
+            <div className="m-title">Do you want this? 🎉</div>
+            <div className="m-desc">{claimC.label}<br/><strong>⭐ {claimC.stars} stars — Daddy will say yes!</strong></div>
+            <div className="m-btns"><button className="m-no" onClick={() => setClaimC(null)}>Not now</button><button className="m-yes channa-yes" onClick={submitClaim}>Yes please! 🙏</button></div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
@@ -567,78 +755,99 @@ function ChannaView({state,update,onBack}){
 /* ═══════════════════════════════════════════════════
    DAD VIEW
 ═══════════════════════════════════════════════════ */
-const fmtTime=ts=>{const d=new Date(ts);return d.toLocaleString('en-US',{weekday:'short',hour:'2-digit',minute:'2-digit'});};
-function DadView({state,update,onBack}){
-  const {ella,channa,pendingApprovals}=state;
-  const taskAp=pendingApprovals.filter(a=>a.type!=='reward');
-  const rewAp =pendingApprovals.filter(a=>a.type==='reward');
+const fmtTime = ts => new Date(ts).toLocaleString('en-US', { weekday:'short', hour:'2-digit', minute:'2-digit' });
 
-  const approve=item=>{
-    const g=state[item.girl];
-    update({...state,[item.girl]:{...g,currentStars:g.currentStars+item.taskStars,lifetimeStars:g.lifetimeStars+item.taskStars,tasks:{...g.tasks,[item.storageKey]:'approved'}},pendingApprovals:pendingApprovals.filter(a=>a.id!==item.id)});
-  };
-  const reject=item=>{
-    const g=state[item.girl]; const t={...g.tasks}; delete t[item.storageKey];
-    update({...state,[item.girl]:{...g,tasks:t},pendingApprovals:pendingApprovals.filter(a=>a.id!==item.id)});
-  };
-  const giveReward=item=>{
-    const g=state[item.girl];
-    update({...state,[item.girl]:{...g,currentStars:Math.max(0,g.currentStars-item.taskStars),rewardRequests:g.rewardRequests.filter(id=>id!==item.rewardId),claimedRewards:[...g.claimedRewards,item.rewardId]},pendingApprovals:pendingApprovals.filter(a=>a.id!==item.id)});
-  };
-  const denyReward=item=>{
-    const g=state[item.girl];
-    update({...state,[item.girl]:{...g,rewardRequests:g.rewardRequests.filter(id=>id!==item.rewardId)},pendingApprovals:pendingApprovals.filter(a=>a.id!==item.id)});
-  };
-  const bonus=(girl,n)=>{const g=state[girl];update({...state,[girl]:{...g,currentStars:g.currentStars+n,lifetimeStars:g.lifetimeStars+n}});};
+function DadView({ state, update, onBack }) {
+  const { ella, channa, pendingApprovals } = state;
+  const taskAp = pendingApprovals.filter(a => a.type !== 'reward');
+  const rewAp  = pendingApprovals.filter(a => a.type === 'reward');
 
-  const elLvl=getLevel(ella.lifetimeStars,ELLA_LEVELS);
-  const chLvl=getLevel(channa.lifetimeStars,CHANNA_LEVELS);
+  const approve = async (item) => {
+    if (item.hasMedia) await deleteMedia(item.id);
+    const g = state[item.girl];
+    update({
+      ...state,
+      [item.girl]: { ...g, currentStars: g.currentStars + item.taskStars, lifetimeStars: g.lifetimeStars + item.taskStars, tasks: { ...g.tasks, [item.storageKey]: 'approved' } },
+      pendingApprovals: pendingApprovals.filter(a => a.id !== item.id),
+    });
+  };
+
+  const reject = async (item) => {
+    if (item.hasMedia) await deleteMedia(item.id);
+    const g = state[item.girl];
+    const t = { ...g.tasks };
+    delete t[item.storageKey];
+    update({ ...state, [item.girl]: { ...g, tasks: t }, pendingApprovals: pendingApprovals.filter(a => a.id !== item.id) });
+  };
+
+  const giveReward = async (item) => {
+    const g = state[item.girl];
+    update({
+      ...state,
+      [item.girl]: { ...g, currentStars: Math.max(0, g.currentStars - item.taskStars), rewardRequests: g.rewardRequests.filter(id => id !== item.rewardId), claimedRewards: [...g.claimedRewards, item.rewardId] },
+      pendingApprovals: pendingApprovals.filter(a => a.id !== item.id),
+    });
+  };
+
+  const denyReward = (item) => {
+    const g = state[item.girl];
+    update({ ...state, [item.girl]: { ...g, rewardRequests: g.rewardRequests.filter(id => id !== item.rewardId) }, pendingApprovals: pendingApprovals.filter(a => a.id !== item.id) });
+  };
+
+  const bonus = (girl, n) => { const g = state[girl]; update({ ...state, [girl]: { ...g, currentStars: g.currentStars + n, lifetimeStars: g.lifetimeStars + n } }); };
+
+  const elLvl = getLevel(ella.lifetimeStars,   ELLA_LEVELS);
+  const chLvl = getLevel(channa.lifetimeStars, CHANNA_LEVELS);
 
   return (
     <div className="dad-bg">
       <div className="dad-header">
         <button className="dad-back-btn" onClick={onBack}>← Back</button>
         <div className="dad-header-title">👨 Dad's Panel</div>
-        {pendingApprovals.length>0&&<span className="notif-badge">{pendingApprovals.length}</span>}
+        {pendingApprovals.length > 0 && <span className="notif-badge">{pendingApprovals.length}</span>}
       </div>
 
       <div className="dad-section">
-        <div className="dad-sec-title">⏳ NEEDS APPROVAL {taskAp.length>0&&<span className="notif-badge">{taskAp.length}</span>}</div>
-        {taskAp.length===0&&<div className="empty-state">✅ All caught up! Nothing to approve.</div>}
-        {taskAp.map(item=>(
+        <div className="dad-sec-title">⏳ NEEDS APPROVAL {taskAp.length > 0 && <span className="notif-badge">{taskAp.length}</span>}</div>
+        {taskAp.length === 0 && <div className="empty-state">✅ All caught up!</div>}
+        {taskAp.map(item => (
           <div key={item.id} className="appr-card fade-in">
             <div className="appr-top">
-              <span className={`girl-tag ${item.girl}-tag`}>{item.girl==='ella'?'Ella':'Channa'}</span>
+              <span className={`girl-tag ${item.girl}-tag`}>{item.girl === 'ella' ? 'Ella' : 'Channa'}</span>
               <span className="appr-icon">{item.taskIcon}</span>
               <span className="appr-label">{item.taskLabel}</span>
               <span className="appr-stars">+{item.taskStars}⭐</span>
             </div>
             <div className="appr-sub">{item.taskDesc} · {fmtTime(item.ts)}</div>
+            {/* Proof photo/video */}
+            {item.hasMedia && <MediaViewer approvalId={item.id} />}
             <div className="appr-btns">
-              <button className="btn-reject"  onClick={()=>reject(item)}>✗ Not done</button>
-              <button className="btn-approve" onClick={()=>approve(item)}>✓ Approve +{item.taskStars}⭐</button>
+              <button className="btn-reject"  onClick={() => reject(item)}>✗ Not done</button>
+              <button className="btn-approve" onClick={() => approve(item)}>✓ Approve +{item.taskStars}⭐</button>
             </div>
           </div>
         ))}
       </div>
 
-      {rewAp.length>0&&<div className="dad-section">
-        <div className="dad-sec-title">🎁 REWARD REQUESTS <span className="notif-badge">{rewAp.length}</span></div>
-        {rewAp.map(item=>(
-          <div key={item.id} className="rew-claim-card fade-in">
-            <span className="rc-emoji">{item.rewardEmoji}</span>
-            <div className="rc-info">
-              <span className={`rc-girl ${item.girl}-tag`}>{item.girl==='ella'?'Ella':'Channa'}</span>
-              <div className="rc-name">{item.taskLabel}</div>
-              <div className="rc-cost">⭐{item.taskStars} stars · {fmtTime(item.ts)}</div>
+      {rewAp.length > 0 && (
+        <div className="dad-section">
+          <div className="dad-sec-title">🎁 REWARD REQUESTS <span className="notif-badge">{rewAp.length}</span></div>
+          {rewAp.map(item => (
+            <div key={item.id} className="rew-claim-card fade-in">
+              <span className="rc-emoji">{item.rewardEmoji}</span>
+              <div className="rc-info">
+                <span className={`rc-girl ${item.girl}-tag`}>{item.girl === 'ella' ? 'Ella' : 'Channa'}</span>
+                <div className="rc-name">{item.taskLabel}</div>
+                <div className="rc-cost">⭐{item.taskStars} · {fmtTime(item.ts)}</div>
+              </div>
+              <div style={{display:'flex',flexDirection:'column',gap:6}}>
+                <button className="btn-give" onClick={() => giveReward(item)}>Give it! 🎉</button>
+                <button onClick={() => denyReward(item)} style={{background:'#f0f0f0',color:'#666',border:'none',borderRadius:10,padding:'6px 10px',fontSize:'0.8rem',fontWeight:700,cursor:'pointer',fontFamily:'inherit'}}>Not yet</button>
+              </div>
             </div>
-            <div style={{display:'flex',flexDirection:'column',gap:6}}>
-              <button className="btn-give" onClick={()=>giveReward(item)}>Give it! 🎉</button>
-              <button onClick={()=>denyReward(item)} style={{background:'#f0f0f0',color:'#666',border:'none',borderRadius:10,padding:'6px 10px',fontSize:'0.8rem',fontWeight:700,cursor:'pointer',fontFamily:'inherit'}}>Not yet</button>
-            </div>
-          </div>
-        ))}
-      </div>}
+          ))}
+        </div>
+      )}
 
       <div className="dad-section">
         <div className="dad-sec-title">📊 PROGRESS</div>
@@ -662,22 +871,22 @@ function DadView({state,update,onBack}){
 /* ═══════════════════════════════════════════════════
    APP
 ═══════════════════════════════════════════════════ */
-function App(){
-  const [view,setView]=React.useState('home');
-  const [st,setSt]=React.useState(loadState);
-  const update=ns=>{setSt(ns);saveState(ns);};
-  const props={state:st,update,onBack:()=>setView('home')};
+function App() {
+  const [view, setView] = React.useState('home');
+  const [st,   setSt]   = React.useState(loadState);
+  const update = ns => { setSt(ns); saveState(ns); };
+  const props  = { state: st, update, onBack: () => setView('home') };
   return (
     <>
-      {view==='home'   &&<Home    onSelect={setView} state={st}/>}
-      {view==='ella'   &&<EllaView   {...props}/>}
-      {view==='channa' &&<ChannaView {...props}/>}
-      {view==='dad'    &&<DadView    {...props}/>}
+      {view === 'home'   && <Home    onSelect={setView} state={st} />}
+      {view === 'ella'   && <EllaView   {...props} />}
+      {view === 'channa' && <ChannaView {...props} />}
+      {view === 'dad'    && <DadView    {...props} />}
     </>
   );
 }
 
-ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
 </script>
 </body>
 </html>
