@@ -168,6 +168,26 @@
     .bonus-btn  { background:linear-gradient(135deg,#ffb347,#ffcc02); color:white; border:none; border-radius:10px; padding:8px 10px; font-weight:900; font-size:0.85rem; cursor:pointer; }
     .empty-state { text-align:center; padding:32px 20px; color:#bbb; font-size:0.9rem; }
 
+    /* ── PIN GATE ─────────────────────────── */
+    .pin-bg { min-height:100vh; background:linear-gradient(160deg,#0d0221 0%,#1a0533 50%,#0f1a4a 100%); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:24px 20px; }
+    .pin-box { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:28px; padding:32px 24px; width:100%; max-width:340px; text-align:center; }
+    .pin-icon  { font-size:3rem; margin-bottom:12px; }
+    .pin-title { font-size:1.3rem; font-weight:900; color:#fff; margin-bottom:6px; }
+    .pin-sub   { font-size:0.85rem; color:rgba(255,255,255,0.4); margin-bottom:24px; }
+    .pin-dots  { display:flex; justify-content:center; gap:14px; margin-bottom:24px; }
+    .pin-dot   { width:16px; height:16px; border-radius:50%; background:rgba(255,255,255,0.15); border:2px solid rgba(255,255,255,0.2); transition:background 0.15s; }
+    .pin-dot.filled { background:#b48cff; border-color:#b48cff; }
+    .pin-grid  { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+    .pin-key   { background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.1); border-radius:14px; padding:16px; font-size:1.4rem; font-weight:700; color:#fff; cursor:pointer; transition:background 0.12s; }
+    .pin-key:active { background:rgba(180,140,255,0.3); }
+    .pin-key.del    { font-size:1rem; color:rgba(255,255,255,0.5); }
+    .pin-error { color:#ff6b6b; font-size:0.85rem; margin-top:12px; }
+    .pin-back-link { color:rgba(255,255,255,0.35); font-size:0.85rem; margin-top:20px; cursor:pointer; background:none; border:none; }
+
+    /* ── RESET STARS ──────────────────────── */
+    .reset-btn { background:rgba(239,83,80,0.12); border:1px solid rgba(239,83,80,0.3); color:#ef5350; border-radius:10px; padding:7px 12px; font-size:0.78rem; font-weight:800; cursor:pointer; margin-top:8px; width:100%; }
+    .reset-btn:hover { background:rgba(239,83,80,0.2); }
+
     /* ── PROOF MEDIA ─────────────────────── */
     .proof-btn { display:flex; align-items:center; justify-content:center; gap:8px; background:rgba(180,140,255,0.08); border:2px dashed rgba(180,140,255,0.3); border-radius:14px; padding:11px; width:100%; cursor:pointer; font-size:0.88rem; font-weight:700; color:rgba(180,140,255,0.8); margin-bottom:14px; transition:background 0.15s; }
     .proof-btn:hover { background:rgba(180,140,255,0.14); }
@@ -451,6 +471,69 @@ function MediaViewer({ approvalId }) {
       {mime?.startsWith('video')
         ? <video src={src} controls />
         : <img src={src} alt="proof" />}
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════════════
+   PIN GATE
+═══════════════════════════════════════════════════ */
+const PIN_KEY = 'star-sisters-pin';
+const getPin  = () => localStorage.getItem(PIN_KEY) || '';
+const setPin  = p  => localStorage.setItem(PIN_KEY, p);
+
+function PinGate({ onSuccess, onBack }) {
+  const stored  = getPin();
+  const isSetup = !stored;
+  const [digits, setDigits] = React.useState('');
+  const [phase,  setPhase]  = React.useState(isSetup ? 'set' : 'enter');
+  const [first,  setFirst]  = React.useState('');
+  const [err,    setErr]    = React.useState('');
+
+  const tap = d => {
+    const next = digits + d;
+    setErr('');
+    if (next.length < 4) { setDigits(next); return; }
+    if (phase === 'enter') {
+      if (next === stored) { onSuccess(); }
+      else { setErr('Wrong PIN ❌'); setDigits(''); }
+    } else if (phase === 'set') {
+      setFirst(next); setDigits(''); setPhase('confirm');
+    } else if (phase === 'confirm') {
+      if (next === first) { setPin(next); onSuccess(); }
+      else { setErr("PINs don't match, try again"); setDigits(''); setPhase('set'); setFirst(''); }
+    }
+  };
+  const del = () => { setDigits(d => d.slice(0,-1)); setErr(''); };
+
+  const title = phase === 'enter'  ? "Dad's Panel"
+              : phase === 'set'    ? 'Set a PIN'
+              :                      'Confirm PIN';
+  const sub   = phase === 'enter'  ? 'Enter your 4-digit PIN'
+              : phase === 'set'    ? 'Choose a 4-digit PIN for Dad'
+              :                      'Enter the PIN again to confirm';
+  const cur   = digits;
+
+  return (
+    <div className="pin-bg">
+      <div className="pin-box">
+        <div className="pin-icon">🔒</div>
+        <div className="pin-title">{title}</div>
+        <div className="pin-sub">{sub}</div>
+        <div className="pin-dots">
+          {[0,1,2,3].map(i => <div key={i} className={`pin-dot${i < cur.length ? ' filled' : ''}`} />)}
+        </div>
+        <div className="pin-grid">
+          {[1,2,3,4,5,6,7,8,9].map(n => (
+            <button key={n} className="pin-key" onClick={() => tap(String(n))}>{n}</button>
+          ))}
+          <div />
+          <button className="pin-key" onClick={() => tap('0')}>0</button>
+          <button className="pin-key del" onClick={del}>⌫</button>
+        </div>
+        {err && <div className="pin-error">{err}</div>}
+        <button className="pin-back-link" onClick={onBack}>← Back</button>
+      </div>
     </div>
   );
 }
@@ -795,6 +878,11 @@ function DadView({ state, update, onBack }) {
   };
 
   const bonus = (girl, n) => { const g = state[girl]; update({ ...state, [girl]: { ...g, currentStars: g.currentStars + n, lifetimeStars: g.lifetimeStars + n } }); };
+  const resetStars = (girl) => {
+    if (!window.confirm(`Reset ${girl === 'ella' ? 'Ella' : 'Hanna'}'s current stars to 0?`)) return;
+    const g = state[girl];
+    update({ ...state, [girl]: { ...g, currentStars: 0 } });
+  };
 
   const elLvl = getLevel(ella.lifetimeStars,   ELLA_LEVELS);
   const chLvl = getLevel(Hanna.lifetimeStars, Hanna_LEVELS);
@@ -860,8 +948,8 @@ function DadView({ state, update, onBack }) {
       <div className="dad-section">
         <div className="dad-sec-title">⭐ BONUS STARS</div>
         <div style={{display:'flex',gap:10}}>
-          <div className="bonus-card"><div className="bonus-name">🌙 Ella</div><div className="bonus-btns">{[1,3,5].map(n=><button key={n} className="bonus-btn" onClick={()=>bonus('ella',n)}>+{n}⭐</button>)}</div></div>
-          <div className="bonus-card"><div className="bonus-name">🌈 Hanna</div><div className="bonus-btns">{[1,3,5].map(n=><button key={n} className="bonus-btn" onClick={()=>bonus('Hanna',n)}>+{n}⭐</button>)}</div></div>
+          <div className="bonus-card"><div className="bonus-name">🌙 Ella</div><div className="bonus-btns">{[1,3,5].map(n=><button key={n} className="bonus-btn" onClick={()=>bonus('ella',n)}>+{n}⭐</button>)}</div><button className="reset-btn" onClick={()=>resetStars('ella')}>🔄 Reset Stars</button></div>
+          <div className="bonus-card"><div className="bonus-name">🌈 Hanna</div><div className="bonus-btns">{[1,3,5].map(n=><button key={n} className="bonus-btn" onClick={()=>bonus('Hanna',n)}>+{n}⭐</button>)}</div><button className="reset-btn" onClick={()=>resetStars('Hanna')}>🔄 Reset Stars</button></div>
         </div>
       </div>
     </div>
@@ -872,16 +960,27 @@ function DadView({ state, update, onBack }) {
    APP
 ═══════════════════════════════════════════════════ */
 function App() {
-  const [view, setView] = React.useState('home');
-  const [st,   setSt]   = React.useState(loadState);
+  const [view,       setView]       = React.useState('home');
+  const [dadUnlocked,setDadUnlocked]= React.useState(false);
+  const [st,         setSt]         = React.useState(loadState);
   const update = ns => { setSt(ns); saveState(ns); };
-  const props  = { state: st, update, onBack: () => setView('home') };
+  const goHome = () => { setView('home'); setDadUnlocked(false); };
+  const props  = { state: st, update, onBack: goHome };
+
+  const selectView = v => {
+    if (v === 'dad') { setDadUnlocked(false); }
+    setView(v);
+  };
+
   return (
     <>
-      {view === 'home'   && <Home    onSelect={setView} state={st} />}
+      {view === 'home'   && <Home    onSelect={selectView} state={st} />}
       {view === 'ella'   && <EllaView   {...props} />}
-      {view === 'Hanna' && <HannaView {...props} />}
-      {view === 'dad'    && <DadView    {...props} />}
+      {view === 'Hanna'  && <HannaView  {...props} />}
+      {view === 'dad' && !dadUnlocked && (
+        <PinGate onSuccess={() => setDadUnlocked(true)} onBack={goHome} />
+      )}
+      {view === 'dad' && dadUnlocked && <DadView {...props} />}
     </>
   );
 }
